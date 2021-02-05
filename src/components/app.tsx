@@ -1,12 +1,16 @@
 import { useEffect } from "react";
 import { Widget } from "@wuespace/telestion-client-types";
-import { TelestionClient, Pages, useEventBusManager } from "@wuespace/telestion-client-core";
+import {
+	TelestionClient,
+	Pages,
+	useEventBusManager,
+} from "@wuespace/telestion-client-core";
 import {
 	CommonWrapper,
 	LoginPage,
 	DashboardPage,
 	NotFoundPage,
-	useUserConfig
+	useUserConfig,
 } from "@wuespace/telestion-client-common";
 
 import { userConfig } from "../model/sample-user-config";
@@ -18,7 +22,7 @@ const widgets: Array<Widget> = [...projectWidgets];
 export function App() {
 	useEventBusManager();
 
-	const set = useUserConfig(state => state.set);
+	const set = useUserConfig((state) => state.set);
 
 	useEffect(() => {
 		// apply user config once
@@ -27,17 +31,17 @@ export function App() {
 
 	return (
 		<TelestionClient
-			title="Telestion Groundstation"
-			wrapper={children => (
+			title="RocketSound Groundstation"
+			wrapper={(children) => (
 				<CommonWrapper widgets={widgets}>
 					<>{children}</>
 				</CommonWrapper>
 			)}
 		>
-			<Pages preNodes={<Header/>}>
-				<LoginPage/>
-				<DashboardPage/>
-				<NotFoundPage/>
+			<Pages preNodes={<Header />}>
+				<LoginPage />
+				<DashboardPage />
+				<NotFoundPage />
 			</Pages>
 		</TelestionClient>
 	);
