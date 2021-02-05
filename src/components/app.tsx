@@ -7,7 +7,6 @@ import {
 } from "@wuespace/telestion-client-core";
 import {
 	CommonWrapper,
-	LoginPage,
 	DashboardPage,
 	NotFoundPage,
 	useUserConfig,
@@ -16,6 +15,7 @@ import {
 import { userConfig } from "../model/sample-user-config";
 import { Header } from "./header";
 import { projectWidgets } from "../widgets";
+import {LoginPage} from "./login-page";
 
 const widgets: Array<Widget> = [...projectWidgets];
 
