@@ -47,7 +47,7 @@
 		"@types/jest": "^26.0.20",
 		"@types/node": "^14.14.28",
 		"@types/react": "^17.0.0",
-		"@types/react-dom": "^17.0.0",
+		"@types/react-dom": "^17.0.1",
 		"@wuespace/telestion-client-cli": "^0.9.0",
 		"@wuespace/telestion-client-types": "^0.9.0",
 		"husky": "^4.3.8",
