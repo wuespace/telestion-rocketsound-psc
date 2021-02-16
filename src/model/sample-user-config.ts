@@ -15,10 +15,10 @@ export const userConfig: UserConfig = {
 						title: 'Widget 1'
 					},
 					{
-						widgetName: 'Widget2',
+						widgetName: 'stateWidget',
 						width: 2,
-						height: 2,
-						title: 'Widget 2'
+						height: 1,
+						title: 'stateWidget'
 					},
 					{
 						widgetName: 'Widget3',
