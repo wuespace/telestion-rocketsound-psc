@@ -2,13 +2,13 @@ import {
 	LoginPage as TCLoginPage,
 	LoginTitle,
 	LoginLogo,
-	LoginForm,
-    LoginDescription
-} from "@wuespace/telestion-client-common";
+	LoginDescription,
+	LoginForm
+} from '@wuespace/telestion-client-common';
 
-export function LoginPage(...props: any) {
+export function LoginPage() {
 	return (
-		<TCLoginPage {...props}>
+		<TCLoginPage>
 			<LoginLogo />
 			<LoginTitle />
 			<LoginDescription />

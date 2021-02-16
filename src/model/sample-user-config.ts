@@ -1,51 +1,51 @@
-import { UserConfig } from "@wuespace/telestion-client-types";
+import { UserConfig } from '@wuespace/telestion-client-types';
 
 export const userConfig: UserConfig = {
 	admin: {
 		dashboards: [
 			{
-				title: "Overview",
+				title: 'Overview',
 				columns: 4,
 				rows: 4,
 				widgets: [
 					{
-						widgetName: "sampleWidget",
+						widgetName: 'sampleWidget',
 						width: 4,
 						height: 1,
-						title: "Widget 1",
+						title: 'Widget 1'
 					},
 					{
-						widgetName: "waveformWidget",
+						widgetName: 'waveformWidget',
 						width: 2,
 						height: 2,
-						title: "Amplitude",
+						title: 'Amplitude'
 					},
 					{
-						widgetName: "Widget3",
+						widgetName: 'Widget3',
 						width: 2,
 						height: 1,
-						title: "Widget 3",
+						title: 'Widget 3'
 					},
 					{
-						widgetName: "Widget4",
+						widgetName: 'Widget4',
 						width: 1,
 						height: 1,
-						title: "Widget 4",
+						title: 'Widget 4'
 					},
 					{
-						widgetName: "Widget5",
+						widgetName: 'Widget5',
 						width: 1,
 						height: 2,
-						title: "Widget 5",
+						title: 'Widget 5'
 					},
 					{
-						widgetName: "Widget6",
+						widgetName: 'Widget6',
 						width: 1,
 						height: 3,
-						title: "Widget 6",
-					},
-				],
-			},
-		],
-	},
+						title: 'Widget 6'
+					}
+				]
+			}
+		]
+	}
 };
