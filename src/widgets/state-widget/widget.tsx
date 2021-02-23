@@ -9,10 +9,31 @@ import {
 import { Badge } from './Badge';
 
 export function Widget() {
+	//Empfangen: record mit int drin
+	var i: number = 0;
+	var istrue: boolean = true;
 	const state = 'defaultState'; //mockup Konstante
 	const nextState = 'nextState'; //mockup Konstante
 	const Tagname = 'Flight'; //mockup Konstante
 	//(flight: rote(negative?) bordercolour, preflight/afterflight: light bordercolour)
+
+	switch (i) {
+		case 1: {
+			break;
+		}
+		case 2: {
+			break;
+		}
+		case 3: {
+			break;
+		}
+		case 4: {
+			break;
+		}
+		case 5: {
+			break;
+		}
+	}
 
 	return (
 		<View padding="size-250">
@@ -27,7 +48,7 @@ export function Widget() {
 					<Content marginY="size-100" UNSAFE_style={{ fontSize: '1.5em' }}>
 						{state}
 					</Content>
-					<Badge special={true}> {Tagname} </Badge>
+					<Badge special={istrue}> {Tagname} </Badge>
 				</Flex>
 
 				<Divider size="M" marginY="single-line-height" />
