@@ -25,8 +25,7 @@ export function Widget() {
 
 				<Flex gap="size-400">
 					<Content marginY="size-100" UNSAFE_style={{ fontSize: '1.5em' }}>
-						{' '}
-						{state}{' '}
+						{state}
 					</Content>
 					<Badge special={true}> {Tagname} </Badge>
 				</Flex>
