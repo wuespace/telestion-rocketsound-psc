@@ -14,7 +14,7 @@ export function Badge({
 }: {
 	special: boolean;
 	children: ReactNode;
-}): JSX.Element {
+}} {
 	return (
 		<View
 			borderWidth={'thick'}
