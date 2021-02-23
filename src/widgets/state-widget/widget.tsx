@@ -35,8 +35,7 @@ export function Widget() {
 
 				<Text marginY="size-50"> Next State: </Text>
 				<Content marginY="size-100" UNSAFE_style={{ fontSize: '1.5em' }}>
-					{' '}
-					{nextState}{' '}
+					{nextState}
 				</Content>
 			</Flex>
 		</View>
