@@ -9,28 +9,48 @@ import {
 import { Badge } from './Badge';
 
 export function Widget() {
-	//Empfangen: record mit int drin
-	var i: number = 0;
-	var istrue: boolean = true;
-	const state = 'defaultState'; //mockup Konstante
-	const nextState = 'nextState'; //mockup Konstante
-	const Tagname = 'Flight'; //mockup Konstante
-	//(flight: rote(negative?) bordercolour, preflight/afterflight: light bordercolour)
+	//Received: record with an int corresponding to a state
+	var i: number = 1;
+
+	var state: string = 'defaultState';
+	var nextState: string = 'nextState';
+	var Tagname: string = 'Tag';
+	var istrue: boolean = false; //true = red border in tag, false = grey
 
 	switch (i) {
 		case 1: {
+			state = 'Preparation';
+			nextState = 'Flying';
+			Tagname = 'Preflight';
+			istrue = false;
 			break;
 		}
 		case 2: {
+			state = 'Flying';
+			nextState = 'Apogee';
+			Tagname = 'Flight';
+			istrue = true;
 			break;
 		}
 		case 3: {
+			state = 'Apogee';
+			nextState = 'Falling';
+			Tagname = 'Flight';
+			istrue = true;
 			break;
 		}
 		case 4: {
+			state = 'Falling';
+			nextState = 'Landed';
+			Tagname = 'Flight';
+			istrue = true;
 			break;
 		}
 		case 5: {
+			state = 'Landed';
+			nextState = '-';
+			Tagname = 'Afterflight';
+			istrue = false;
 			break;
 		}
 	}
