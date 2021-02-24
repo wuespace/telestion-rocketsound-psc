@@ -1,6 +1,7 @@
-import { useColorScheme } from "@wuespace/telestion-client-common";
-import React, { useEffect, useRef, useState } from "react";
-import useCanvas from "./useCanvas";
+import { useColorScheme } from '@wuespace/telestion-client-common';
+import { View } from '@adobe/react-spectrum';
+import React, { useEffect, useRef, useState } from 'react';
+import useCanvas from './useCanvas';
 
 type WaveformProps = {
 	amplitude: number;
@@ -12,24 +13,25 @@ export function Waveform({ amplitude }: WaveformProps) {
 	const [canvasWidth, setCanvasWidth] = useState<number>(100);
 	const [canvasHeight, setCanvasHeight] = useState<number>(100);
 	const [amplitudes, setAmplitudes] = useState<number[]>([]);
-	const { colorScheme } = useColorScheme((state) => ({
-		colorScheme: state.colorScheme,
+	const { colorScheme } = useColorScheme(state => ({
+		colorScheme: state.colorScheme
 	}));
 
 	const containerStyle: React.CSSProperties = {
-		width: "100%",
-		height: "100%",
-		backgroundColor: colorScheme.match("dark") ? "gray" : "white",
-		border: "1px dotted gray",
-		display: "flex",
-		alignItems: "center",
+		width: '100%',
+		height: '100%',
+		backgroundColor: colorScheme.match('dark') ? 'gray' : 'white',
+		border: '1px dotted gray',
+		borderRadius: '5px',
+		display: 'flex',
+		alignItems: 'center'
 	};
 
 	useEffect(() => {
 		if (amplitudes.length < Math.floor(canvasWidth * 0.9)) {
-			setAmplitudes((prevAmps) => [...prevAmps, amplitude]);
+			setAmplitudes(prevAmps => [...prevAmps, amplitude]);
 		} else {
-			setAmplitudes((prevAmps) => {
+			setAmplitudes(prevAmps => {
 				let shifted = [...prevAmps];
 				shifted.shift();
 				shifted.push(amplitude);
@@ -49,12 +51,12 @@ export function Waveform({ amplitude }: WaveformProps) {
 	const drawWaveform = (ctx: CanvasRenderingContext2D) => {
 		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 		ctx.lineWidth = 1;
-		ctx.lineCap = "round";
-		ctx.strokeStyle = "#452897";
+		ctx.lineCap = 'round';
+		ctx.strokeStyle = '#452897';
 		ctx.beginPath();
 		for (let i = 0; i < amplitudes.length; i++) {
-			ctx.moveTo(i, ctx.canvas.height / 2 + amplitudes[i]);
-			ctx.lineTo(i, ctx.canvas.height / 2 - amplitudes[i]);
+			ctx.moveTo(i, ctx.canvas.height);
+			ctx.lineTo(i, ctx.canvas.height - amplitudes[i]);
 		}
 		ctx.stroke();
 	};
