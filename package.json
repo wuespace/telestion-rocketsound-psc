@@ -25,8 +25,8 @@
 		]
 	},
 	"dependencies": {
-		"@adobe/react-spectrum": "^3.6.0",
-		"@react-spectrum/tabs": "^3.0.0-alpha.3",
+		"@adobe/react-spectrum": "^3.8.0",
+		"@react-spectrum/tabs": "^3.0.0-alpha.4",
 		"@spectrum-icons/illustrations": "^3.2.0",
 		"@spectrum-icons/ui": "^3.2.0",
 		"@spectrum-icons/workflow": "^3.2.0",
@@ -34,18 +34,18 @@
 		"@wuespace/telestion-client-core": "^0.9.0",
 		"@wuespace/telestion-client-prop-types": "^0.9.0",
 		"@wuespace/vertx-mock-server": "^0.9.0",
-		"electron": "^11.2.1",
+		"electron": "^11.3.0",
 		"react": "^17.0.1",
 		"react-dom": "^17.0.1",
 		"react-router-dom": "^5.2.0",
-		"zustand": "^3.2.0"
+		"zustand": "^3.3.2"
 	},
 	"devDependencies": {
 		"@testing-library/jest-dom": "^5.11.9",
 		"@testing-library/react": "^11.2.3",
-		"@testing-library/user-event": "^12.7.1",
+		"@testing-library/user-event": "^12.7.2",
 		"@types/jest": "^26.0.20",
-		"@types/node": "^14.14.28",
+		"@types/node": "^14.14.31",
 		"@types/react": "^17.0.2",
 		"@types/react-dom": "^17.0.1",
 		"@wuespace/telestion-client-cli": "^0.9.0",
@@ -53,7 +53,7 @@
 		"husky": "^4.3.8",
 		"prettier": "^2.2.1",
 		"pretty-quick": "^3.1.0",
-		"react-scripts": "^4.0.1",
+		"react-scripts": "^4.0.3",
 		"typescript": "^4.1.5"
 	},
 	"browserslist": {
