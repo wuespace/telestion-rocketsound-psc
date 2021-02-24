@@ -4,8 +4,6 @@ import { ReactNode } from 'react';
 
 export interface BadgeProps {
 	label: string;
-
-	backgroundColor: ViewProps['backgroundColor'];
 }
 
 export function Badge({

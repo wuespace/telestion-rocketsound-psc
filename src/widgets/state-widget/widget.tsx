@@ -7,77 +7,75 @@ import {
 	Text
 } from '@adobe/react-spectrum';
 import { Badge } from './Badge';
+import { StateDisplay } from './StateDisplay';
+import { useChannelLatest } from '@wuespace/telestion-client-core';
+import { LoadingIndicator } from '@wuespace/telestion-client-common';
+
+type StateChannelType = {
+	state: number;
+	name: string;
+	className: 'org.telestion.core.database.MongoDatabaseService/out#save/de.jvpichowski.rocketsound.messages.base.FlightState';
+};
+
+interface State {
+	currentState: string;
+	nextState: string;
+	tagName: string;
+	isSpecial: boolean;
+}
+
+const states: { [key: number]: State } = {
+	0: {
+		currentState: '-',
+		nextState: '-',
+		tagName: '-',
+		isSpecial: false
+	},
+	1: {
+		currentState: 'Preparation',
+		nextState: 'Flying',
+		tagName: 'Preflight',
+		isSpecial: false //true = red border in tag, false = grey
+	},
+	2: {
+		currentState: 'Flying',
+		nextState: 'Apogee',
+		tagName: 'Flight',
+		isSpecial: true
+	},
+	3: {
+		currentState: 'Apogee',
+		nextState: 'Falling',
+		tagName: 'Flight',
+		isSpecial: true
+	},
+	4: {
+		currentState: 'Falling',
+		nextState: 'Landed',
+		tagName: 'Flight',
+		isSpecial: true
+	},
+	5: {
+		currentState: 'Landed',
+		nextState: '-',
+		tagName: 'Afterflight',
+		isSpecial: false
+	}
+};
+
+const fallbackState: State = states[0]; // can be anything (displayed when nothing is arriving)
 
 export function Widget() {
+	const current = useChannelLatest<StateChannelType>('my-channel');
 	//Received: record with an int corresponding to a state
-	var i: number = 1;
 
-	var state: string = 'defaultState';
-	var nextState: string = 'nextState';
-	var Tagname: string = 'Tag';
-	var istrue: boolean = false; //true = red border in tag, false = grey
-
-	switch (i) {
-		case 1: {
-			state = 'Preparation';
-			nextState = 'Flying';
-			Tagname = 'Preflight';
-			istrue = false;
-			break;
-		}
-		case 2: {
-			state = 'Flying';
-			nextState = 'Apogee';
-			Tagname = 'Flight';
-			istrue = true;
-			break;
-		}
-		case 3: {
-			state = 'Apogee';
-			nextState = 'Falling';
-			Tagname = 'Flight';
-			istrue = true;
-			break;
-		}
-		case 4: {
-			state = 'Falling';
-			nextState = 'Landed';
-			Tagname = 'Flight';
-			istrue = true;
-			break;
-		}
-		case 5: {
-			state = 'Landed';
-			nextState = '-';
-			Tagname = 'Afterflight';
-			istrue = false;
-			break;
-		}
-	}
+	//just for initial testing: let i: number = 1;
 
 	return (
-		<View padding="size-250">
-			<Flex direction="column" alignItems="start">
-				<Heading level={2}>State Machine State </Heading>
-
-				<Divider size="M" marginY="single-line-height" />
-
-				<Text marginY="size-50"> Current State: </Text>
-
-				<Flex gap="size-400">
-					<Content marginY="size-100" UNSAFE_style={{ fontSize: '1.5em' }}>
-						{state}
-					</Content>
-					<Badge special={istrue}> {Tagname} </Badge>
-				</Flex>
-
-				<Divider size="M" marginY="single-line-height" />
-
-				<Text marginY="size-50"> Next State: </Text>
-				<Content marginY="size-100" UNSAFE_style={{ fontSize: '1.5em' }}>
-					{nextState}
-				</Content>
-			</Flex>
-		</View>
+		<LoadingIndicator dependencies={[current]} timeout={5000}>
+			{() => (
+				<StateDisplay state={states[current?.state || 0] || fallbackState} />
+			)}
+		</LoadingIndicator>
 	);
 }
