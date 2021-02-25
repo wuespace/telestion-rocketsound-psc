@@ -15,7 +15,7 @@ export const userConfig: UserConfig = {
 						title: 'Widget 1'
 					},
 					{
-						widgetName: 'Widget2',
+						widgetName: 'mapwidget',
 						width: 2,
 						height: 2,
 						title: 'Widget 2'
