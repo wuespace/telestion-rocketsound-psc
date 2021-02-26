@@ -42,7 +42,7 @@ export function Widget() {
 		MONGODB_NEW + '/de.jvpichowski.rocketsound.messages.base.GpsData'
 	);
 
-	let [expertMode, setexpertMode] = useState(false);
+	let [isBounded, setBounded] = useState(true);
 
 	const bounds = isBounded ? mapBounds : noBounds;
 
