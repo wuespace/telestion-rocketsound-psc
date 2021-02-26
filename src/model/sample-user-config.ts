@@ -15,13 +15,13 @@ export const userConfig: UserConfig = {
 						title: 'Widget 1'
 					},
 					{
-						widgetName: 'Widget2',
+						widgetName: 'stateMachine',
 						width: 2,
 						height: 2,
 						title: 'Widget 2'
 					},
 					{
-						widgetName: 'Widget3',
+						widgetName: 'stateMachine',
 						width: 2,
 						height: 1,
 						title: 'Widget 3'
@@ -33,7 +33,7 @@ export const userConfig: UserConfig = {
 						title: 'Widget 4'
 					},
 					{
-						widgetName: 'Widget5',
+						widgetName: 'stateMachine',
 						width: 1,
 						height: 2,
 						title: 'Widget 5'

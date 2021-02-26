@@ -1,0 +1,42 @@
+import {
+	Meta,
+	Story,
+	Canvas,
+	Description,
+	ArgsTable
+} from '@storybook/addon-docs/blocks';
+
+import { CommonWrapper } from '@wuespace/telestion-client-common';
+import { Badge } from './badge';
+
+<Meta
+	title="Helpers/Badge"
+	component={Badge}
+	args={{ children: 'Hello World' }}
+/>
+
+# Badge
+
+```tsx
+import { Badge } from '/src/widgets/state-machine/badge';
+```
+
+<Description of={Badge} />
+
+## Examples
+
+<Canvas>
+	<Story name="normal" args={{ special: false }}>
+		{args => <Badge {...args} />}
+	</Story>
+</Canvas>
+
+<Canvas>
+	<Story name="special" args={{ special: true }}>
+		{args => <Badge {...args} />}
+	</Story>
+</Canvas>
+
+## Properties
+
+<ArgsTable of={Badge} />

@@ -7,9 +7,11 @@ using the tc-cli generate widget command.
 
 import { Widget } from '@wuespace/telestion-client-types';
 import { widget as sampleWidget } from './sample-widget';
+import { widget as stateMachine } from './state-machine';
 // IMPORT_INSERT_MARK
 
 export const projectWidgets: Widget[] = [
 	// ARRAY_FIRST_ELEMENT_INSERT_MARK
+	stateMachine,
 	sampleWidget
 ];
