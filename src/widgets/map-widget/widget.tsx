@@ -33,6 +33,14 @@ interface Position {
 export const MONGODB_NEW =
 	'org.telestion.core.database.MongoDatabaseService/out#save';
 
+const noBounds = new LatLngBounds(new LatLng(180, 180), new LatLng(-180, -180));
+const mapBounds = new LatLngBounds(
+	new LatLng(49.747112, 9.958076),
+	new LatLng(49.65585, 9.798088)
+);
+
+const mapCenter = [49.705638, 9.890828];
+
 export function Widget() {
 	const latestMessage = useChannelLatest<DataMessage<Position>>(
 		MONGODB_NEW + '/de.jvpichowski.rocketsound.messages.base.GpsData'
