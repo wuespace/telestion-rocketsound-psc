@@ -59,7 +59,7 @@ export function Widget() {
 				marginStart={'size-100'}
 			>
 				<Heading>Map</Heading>
-				<Switch isSelected={expertMode} onChange={setexpertMode}>
+				<Switch isSelected={!isBounded} onChange={state => setBounded(!state)}>
 					Expert Mode (disable boundaries)
 				</Switch>
 			</Flex>
