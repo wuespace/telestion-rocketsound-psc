@@ -1,21 +1,17 @@
+import { useState } from 'react';
 import { useChannelLatest } from '@wuespace/telestion-client-core';
-
+import { JsonSerializable } from '@wuespace/telestion-client-types'; // TODO: Remove me on refactor!
+import { Divider, Flex, Heading, Switch } from '@adobe/react-spectrum';
+// TODO: Remove me on refactor!
+import { LatLng, LatLngBounds } from 'leaflet';
 import {
 	CircleMarker,
 	MapContainer,
 	TileLayer,
 	MapConsumer
 } from 'react-leaflet';
-
 import 'leaflet/dist/leaflet.css';
 import 'leaflet/dist/leaflet.js';
-import { LatLng, LatLngBounds } from 'leaflet';
-import { JsonSerializable } from '@wuespace/telestion-client-types';
-import { Switch } from '@adobe/react-spectrum';
-import { Flex } from '@adobe/react-spectrum';
-import { Heading } from '@adobe/react-spectrum';
-import { Divider } from '@adobe/react-spectrum';
-import { useState } from 'react';
 
 interface DataMessage<T extends JsonSerializable> {
 	[key: string]: JsonSerializable;
