@@ -44,13 +44,7 @@ export function Widget() {
 
 	let [expertMode, setexpertMode] = useState(false);
 
-	const boundsno = new LatLng(49.747112, 9.958076);
-	const boundssw = new LatLng(49.65585, 9.798088);
-	let bounds = new LatLngBounds(boundsno, boundssw);
-
-	if (expertMode) {
-		bounds = new LatLngBounds(new LatLng(180, 180), new LatLng(-180, -180));
-	}
+	const bounds = isBounded ? mapBounds : noBounds;
 
 	return (
 		<Flex direction={'column'} height={'100%'} gap={'size-100'}>
