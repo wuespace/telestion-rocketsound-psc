@@ -66,7 +66,7 @@ export function Widget() {
 			<Divider />
 			<MapContainer
 				style={{ height: '100%' }}
-				center={[49.705638, 9.890828]}
+				center={mapCenter}
 				zoom={10}
 				minZoom={10}
 				maxZoom={15}
