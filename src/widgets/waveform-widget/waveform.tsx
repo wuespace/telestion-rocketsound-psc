@@ -1,5 +1,5 @@
 import { useColorScheme } from '@wuespace/telestion-client-common';
-import { Content, Flex, View } from '@adobe/react-spectrum';
+import { Flex, View } from '@adobe/react-spectrum';
 import React, { useEffect, useRef, useState } from 'react';
 import useCanvas from './useCanvas';
 
@@ -9,6 +9,14 @@ type WaveformProps = {
 	yLabel: string;
 };
 
+/**
+ * A basic waveform component displaying amplitudes on a HTMLCanvas.
+ *
+ * @param {number} amplitude most recent value to be displayed at the end of the waveform
+ * @param {string} xLabel text label for the x-axis
+ * @param {string} yLabel text label for the y-axis
+ *
+ */
 export function Waveform({ amplitude, xLabel, yLabel }: WaveformProps) {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [canvasWidth, setCanvasWidth] = useState<number>(100);
@@ -17,12 +25,6 @@ export function Waveform({ amplitude, xLabel, yLabel }: WaveformProps) {
 	const { colorScheme } = useColorScheme(state => ({
 		colorScheme: state.colorScheme
 	}));
-
-	const containerStyle: React.CSSProperties = {
-		width: '100%',
-		display: 'flex',
-		flexWrap: 'wrap'
-	};
 
 	const canvasContainerStyle: React.CSSProperties = {
 		width: '100%',
