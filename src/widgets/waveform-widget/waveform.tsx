@@ -1,14 +1,15 @@
 import { useColorScheme } from '@wuespace/telestion-client-common';
-import { View } from '@adobe/react-spectrum';
+import { Content, Flex, View } from '@adobe/react-spectrum';
 import React, { useEffect, useRef, useState } from 'react';
 import useCanvas from './useCanvas';
 
 type WaveformProps = {
 	amplitude: number;
+	xLabel: string;
+	yLabel: string;
 };
 
-export function Waveform({ amplitude }: WaveformProps) {
-	// const amplitudeBuffer = Buffer.alloc(30);
+export function Waveform({ amplitude, xLabel, yLabel }: WaveformProps) {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [canvasWidth, setCanvasWidth] = useState<number>(100);
 	const [canvasHeight, setCanvasHeight] = useState<number>(100);
@@ -19,12 +20,30 @@ export function Waveform({ amplitude }: WaveformProps) {
 
 	const containerStyle: React.CSSProperties = {
 		width: '100%',
+		display: 'flex',
+		flexWrap: 'wrap'
+	};
+
+	const canvasContainerStyle: React.CSSProperties = {
+		width: '100%',
 		height: '100%',
 		backgroundColor: colorScheme.match('dark') ? 'gray' : 'white',
 		border: '1px dotted gray',
 		borderRadius: '5px',
 		display: 'flex',
 		alignItems: 'center'
+	};
+
+	const yAxisStyle: React.CSSProperties = {
+		writingMode: 'vertical-rl',
+		transform: 'rotate(180deg)',
+		textAlign: 'center',
+		width: '20px'
+	};
+
+	const xAxisStyle: React.CSSProperties = {
+		textAlign: 'center',
+		width: `${canvasWidth}px`
 	};
 
 	useEffect(() => {
@@ -64,8 +83,19 @@ export function Waveform({ amplitude }: WaveformProps) {
 	const canvasRef = useCanvas(drawWaveform);
 
 	return (
-		<div ref={containerRef} style={containerStyle}>
-			<canvas ref={canvasRef} width={canvasWidth} height={canvasHeight} />
-		</div>
+		<View padding="size-10">
+			<Flex direction="column">
+				<Flex direction="row">
+					<div style={yAxisStyle}>{yLabel}</div>
+					<div ref={containerRef} style={canvasContainerStyle}>
+						<canvas ref={canvasRef} width={canvasWidth} height={canvasHeight} />
+					</div>
+				</Flex>
+				<Flex direction="row">
+					<div style={{ width: '20px' }}>&nbsp;</div>
+					<div style={xAxisStyle}>{xLabel}</div>
+				</Flex>
+			</Flex>
+		</View>
 	);
 }
