@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useChannelLatest } from '@wuespace/telestion-client-core';
-import { JsonSerializable } from '@wuespace/telestion-client-types'; // TODO: Remove me on refactor!
+import { JsonSerializable } from '@wuespace/telestion-client-types';
 import { Divider, Flex, Heading, Switch } from '@adobe/react-spectrum';
-// TODO: Remove me on refactor!
 import { LatLng, LatLngBounds } from 'leaflet';
 import {
 	CircleMarker,
@@ -39,7 +38,7 @@ const mapBounds = new LatLngBounds(
 	new LatLng(49.65585, 9.798088)
 );
 
-const mapCenter = [49.705638, 9.890828];
+const mapCenter = new LatLng(49.705638, 9.890828);
 
 export function Widget() {
 	const latestMessage = useChannelLatest<DataMessage<Position>>(
