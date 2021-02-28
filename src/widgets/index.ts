@@ -8,10 +8,12 @@ using the tc-cli generate widget command.
 import { Widget } from '@wuespace/telestion-client-types';
 import { widget as sampleWidget } from './sample-widget';
 import { widget as ninedof } from './9dof';
+import { widget as lineGraphWidget } from './line-graph-widget';
 // IMPORT_INSERT_MARK
 
 export const projectWidgets: Widget[] = [
 	// ARRAY_FIRST_ELEMENT_INSERT_MARK
+	lineGraphWidget,
 	ninedof,
 	sampleWidget
 ];
