@@ -1,4 +1,35 @@
 import { UserConfig } from '@wuespace/telestion-client-types';
+import { NineDOF } from './channels';
+import { WidgetProps } from '../widgets/graph-widget/model';
+
+const accLineGraph: WidgetProps = {
+	isArea: false,
+	connections: [
+		{
+			channel: NineDOF,
+			descriptors: [
+				{
+					key: 'acc.x',
+					title: 'Acc X',
+					color: '#d21800',
+					isDotted: true
+				},
+				{
+					key: 'acc.y',
+					title: 'Acc Y',
+					color: '#00ec05',
+					isDotted: true
+				},
+				{
+					key: 'acc.y',
+					title: 'Acc Z',
+					color: '#0075ff',
+					isDotted: true
+				}
+			]
+		}
+	]
+};
 
 export const userConfig: UserConfig = {
 	admin: {
@@ -21,10 +52,11 @@ export const userConfig: UserConfig = {
 						title: 'Widget 2'
 					},
 					{
-						widgetName: 'Widget3',
+						widgetName: 'lineGraphWidget',
 						width: 2,
 						height: 1,
-						title: 'Widget 3'
+						title: 'Widget 3',
+						initialProps: accLineGraph
 					},
 					{
 						widgetName: 'Widget4',
