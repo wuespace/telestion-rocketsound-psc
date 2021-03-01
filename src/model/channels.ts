@@ -5,6 +5,8 @@ export const MONGODB_NEW =
 
 export const NineDOF =
 	MONGODB_NEW + '/de.jvpichowski.rocketsound.messages.base.NineDofData';
+export const FlightState =
+	MONGODB_NEW + '/de.jvpichowski.rocketsound.messages.base.FlightState';
 
 export interface DataMessage<T extends JsonSerializable> {
 	[key: string]: JsonSerializable;
