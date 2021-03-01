@@ -1,15 +1,14 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, MutableRefObject } from 'react';
+
+export type Draw = (ctx: CanvasRenderingContext2D) => void;
 
 /**
- * The useCanvas hook takes a draw function with a CanvasRenderingContext2D and adds it to an AnimationFrame.
+ * The useCanvas hook takes a draw function with a CanvasRenderingContext2D
+ * and adds it to an AnimationFrame.
+ * @param draw - a function to draw the canvas
  *
- *
- * @param draw
- * <p>
- *  Example of a draw function:
- *
- * <pre>
- * {@code
+ * @example
+ * ```ts
  * const drawLine = (ctx: CanvasRenderingContext2D) => {
  *		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
  *		ctx.lineWidth = 1;
@@ -21,10 +20,11 @@ import { useRef, useEffect } from 'react';
  *		ctx.stroke(); // function to stroke a line
  *	};
  * }
- *
- * </pre>
+ * ```
  */
-const useCanvas = (draw: (ctx: CanvasRenderingContext2D) => void) => {
+export function useCanvas(
+	draw: Draw
+): MutableRefObject<HTMLCanvasElement | null> {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 
 	useEffect(() => {
@@ -42,6 +42,4 @@ const useCanvas = (draw: (ctx: CanvasRenderingContext2D) => void) => {
 	}, [draw]);
 
 	return canvasRef;
-};
-
-export default useCanvas;
+}

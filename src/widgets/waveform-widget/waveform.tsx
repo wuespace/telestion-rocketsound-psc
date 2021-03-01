@@ -1,30 +1,33 @@
-import { useColorScheme } from '@wuespace/telestion-client-common';
-import { Flex, View } from '@adobe/react-spectrum';
 import React, { useEffect, useRef, useState } from 'react';
-import useCanvas from './useCanvas';
+import { Flex, View } from '@adobe/react-spectrum';
+import { useColorScheme } from '@wuespace/telestion-client-common';
 
-type WaveformProps = {
+import { useCanvas } from './use-canvas';
+
+export interface WaveformProps {
+	/**
+	 * The most recent value to be displayed at the end of the waveform.
+	 */
 	amplitude: number;
+	/**
+	 * Text label for the x-axis.
+	 */
 	xLabel: string;
+	/**
+	 * Text label for the y-axis.
+	 */
 	yLabel: string;
-};
+}
 
 /**
  * A basic waveform component displaying amplitudes on a HTMLCanvas.
- *
- * @param {number} amplitude most recent value to be displayed at the end of the waveform
- * @param {string} xLabel text label for the x-axis
- * @param {string} yLabel text label for the y-axis
- *
  */
 export function Waveform({ amplitude, xLabel, yLabel }: WaveformProps) {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [canvasWidth, setCanvasWidth] = useState<number>(100);
 	const [canvasHeight, setCanvasHeight] = useState<number>(100);
 	const [amplitudes, setAmplitudes] = useState<number[]>([]);
-	const { colorScheme } = useColorScheme(state => ({
-		colorScheme: state.colorScheme
-	}));
+	const colorScheme = useColorScheme(state => state.colorScheme);
 
 	const canvasContainerStyle: React.CSSProperties = {
 		width: '100%',

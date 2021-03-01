@@ -1,10 +1,10 @@
+import { useState, useEffect } from 'react';
 import { View, Heading } from '@adobe/react-spectrum';
 import { useChannelLatest } from '@wuespace/telestion-client-core';
-import { MONGODB_NEW } from '../../model/channels';
-import { useState } from 'react';
-import { Waveform } from './waveform';
-import { useEffect } from 'react';
 import { JsonSerializable } from '@wuespace/telestion-client-types';
+
+import { MONGODB_NEW } from '../../model/channels';
+import { Waveform } from './waveform';
 
 // TODO: Move to model
 interface DataMessage<T extends JsonSerializable> {
@@ -21,17 +21,18 @@ interface Amplitude {
 	className: string;
 }
 
+const channel =
+	MONGODB_NEW + '/de.jvpichowski.rocketsound.messages.sound.Amplitude';
+
 export function Widget() {
-	const latestAmplitude = useChannelLatest<DataMessage<Amplitude>>(
-		MONGODB_NEW + '/de.jvpichowski.rocketsound.messages.sound.Amplitude'
-	);
+	const latestAmplitude = useChannelLatest<DataMessage<Amplitude>>(channel);
 	const [amplitude, setAmplitude] = useState<number>(0);
 
 	useEffect(() => {
 		setAmplitude(
 			latestAmplitude ? latestAmplitude.result[0].amplitude : amplitude
 		);
-	}, [latestAmplitude]);
+	}, [amplitude, latestAmplitude]);
 
 	return (
 		<View padding="size-150">
