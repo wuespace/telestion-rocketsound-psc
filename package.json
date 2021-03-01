@@ -49,7 +49,7 @@
 		"@types/node": "^14.14.31",
 		"@types/react": "^17.0.2",
 		"@types/react-dom": "^17.0.1",
-		"@wuespace/telestion-client-cli": "^0.11.0",
+		"@wuespace/telestion-client-cli": "^0.11.1",
 		"@wuespace/telestion-client-types": "^0.11.0",
 		"husky": "^4.3.8",
 		"prettier": "^2.2.1",
