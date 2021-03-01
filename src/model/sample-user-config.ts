@@ -1,48 +1,64 @@
 import { UserConfig } from '@wuespace/telestion-client-types';
+import {
+	accLineGraph,
+	detailsGraph,
+	gyroLineGraph,
+	magLineGraph
+} from './sample-graph-definitions';
 
 export const userConfig: UserConfig = {
 	admin: {
 		dashboards: [
 			{
 				title: 'Overview',
-				columns: 4,
-				rows: 4,
+				columns: 12,
+				rows: 12,
 				widgets: [
 					{
-						widgetName: 'sampleWidget',
-						width: 4,
-						height: 1,
-						title: 'Widget 1'
+						widgetName: '9dof-widget',
+						width: 3,
+						height: 4,
+						title: 'Current values'
 					},
 					{
-						widgetName: 'waveformWidget',
-						width: 2,
-						height: 2,
-						title: 'Amplitude'
+						widgetName: 'graphWidget',
+						width: 3,
+						height: 4,
+						title: 'Accelerometer',
+						initialProps: accLineGraph
 					},
 					{
-						widgetName: 'Widget3',
-						width: 2,
-						height: 1,
-						title: 'Widget 3'
+						widgetName: 'graphWidget',
+						width: 3,
+						height: 4,
+						title: 'Gyroscope',
+						initialProps: gyroLineGraph
 					},
 					{
-						widgetName: 'Widget4',
-						width: 1,
-						height: 1,
-						title: 'Widget 4'
+						widgetName: 'graphWidget',
+						width: 3,
+						height: 4,
+						title: 'Magnetometer',
+						initialProps: magLineGraph
 					},
 					{
-						widgetName: 'Widget5',
-						width: 1,
-						height: 2,
-						title: 'Widget 5'
+						widgetName: 'graphWidget',
+						width: 12,
+						height: 4,
+						title: 'Details',
+						initialProps: detailsGraph
 					},
 					{
-						widgetName: 'Widget6',
-						width: 1,
-						height: 3,
-						title: 'Widget 6'
+						widgetName: 'stateWidget',
+						width: 3,
+						height: 4,
+						title: 'stateWidget'
+					},
+					{
+						widgetName: 'mapwidget',
+						width: 3,
+						height: 4,
+						title: 'GPS Data'
 					}
 				]
 			}
