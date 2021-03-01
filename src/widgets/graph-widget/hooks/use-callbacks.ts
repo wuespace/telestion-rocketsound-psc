@@ -13,7 +13,8 @@ export type ChartCallback = readonly [ChannelAddress, Callback];
 
 export function useCallbacks(
 	connections: ChartConnection[],
-	setData: SetData
+	setData: SetData,
+	maxDataSamples: number
 ): ChartCallback[] {
 	const [initialDate] = useState(new Date());
 	const [error, setError] = useState<Error>();
@@ -26,7 +27,10 @@ export function useCallbacks(
 						// build current time diff from start
 						const time = (new Date().getTime() - initialDate.getTime()) / 1000;
 						const dataSample = buildDataSample(descriptors, message, time);
-						setData(prevState => [...prevState.slice(-20), dataSample]);
+						setData(prevState => [
+							...prevState.slice(-maxDataSamples),
+							dataSample
+						]);
 					} catch (err) {
 						setError(err);
 					}
@@ -34,7 +38,7 @@ export function useCallbacks(
 
 				return [channel, callback] as ChartCallback;
 			}),
-		[connections, initialDate, setData]
+		[connections, initialDate, maxDataSamples, setData]
 	);
 
 	if (error) throw error;

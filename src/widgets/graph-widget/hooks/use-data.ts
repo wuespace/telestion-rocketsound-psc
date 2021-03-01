@@ -11,11 +11,14 @@ const selector: StateSelector<
 	EventBusState['eventBus']
 > = state => state.eventBus;
 
-export function useData(connections: ChartConnection[]) {
+export function useData(
+	connections: ChartConnection[],
+	maxDataSamples: number
+) {
 	const eventBus = useEventBus(selector);
 
 	const [data, setData] = useState<DataSample[]>([]);
-	const callbacks = useCallbacks(connections, setData);
+	const callbacks = useCallbacks(connections, setData, maxDataSamples);
 
 	if (!eventBus) {
 		throw new TypeError(

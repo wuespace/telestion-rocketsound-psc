@@ -1,6 +1,21 @@
 import { JsonSerializable } from '@wuespace/telestion-client-types';
 
-export interface ChartConnection extends Record<string, JsonSerializable> {
+export type SimpleCurveType =
+	| 'basis'
+	| 'basisClosed'
+	| 'basisOpen'
+	| 'linear'
+	| 'linearClosed'
+	| 'natural'
+	| 'monotoneX'
+	| 'monotoneY'
+	| 'monotone'
+	| 'step'
+	| 'stepBefore'
+	| 'stepAfter';
+
+export interface ChartConnection
+	extends Record<string, JsonSerializable | undefined> {
 	/**
 	 * The channel to subscribe to and receive data from.
 	 */
@@ -12,11 +27,12 @@ export interface ChartConnection extends Record<string, JsonSerializable> {
 	descriptors: DataSetDescriptor[];
 }
 
-export interface DataSetDescriptor extends Record<string, JsonSerializable> {
+export interface DataSetDescriptor
+	extends Record<string, JsonSerializable | undefined> {
 	/**
 	 * The title of the data set.
 	 */
-	title: string;
+	title?: string;
 
 	/**
 	 * The key from the received message object which should be displayed.
@@ -29,7 +45,30 @@ export interface DataSetDescriptor extends Record<string, JsonSerializable> {
 	color: string;
 
 	/**
-	 * When `true` data points are displayed.
+	 * The stroke width in pixels.
+	 *
+	 * Defaults to `1`.
 	 */
-	isDotted: boolean;
+	strokeWidth?: number;
+
+	/**
+	 * The type of interpolation to use.
+	 *
+	 * Defaults to `'monotone'`.
+	 */
+	interpolation?: SimpleCurveType;
+
+	/**
+	 * When `true` data points are displayed.
+	 *
+	 * Defaults to `false`.
+	 */
+	isDotted?: boolean;
+
+	/**
+	 * When `true` the rendered line is dashed.
+	 *
+	 * Defaults to `false`.
+	 */
+	isDashed?: boolean;
 }

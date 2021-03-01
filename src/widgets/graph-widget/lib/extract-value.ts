@@ -16,7 +16,13 @@ export function extractValue(obj: JsonSerializable, key: string): number {
 			);
 		}
 
-		reduce = reduce[accessors[i]];
+		const value = reduce[accessors[i]];
+
+		if (typeof value === 'undefined') {
+			throw new TypeError(`Accessor ${accessors[i]} is undefined.`);
+		}
+
+		reduce = value;
 	}
 
 	if (typeof reduce !== 'number') {

@@ -4,14 +4,17 @@ import { Heading, View, Flex } from '@adobe/react-spectrum';
 
 import { DataSetDescriptor, WidgetProps } from './model';
 import { useData } from './hooks';
-import { Graph } from './graph';
+import { Graph } from './components/graph';
 
 export function Widget({
 	title,
 	isArea,
+	isCartesianGrid,
+	isHoldOnHover,
+	maxDataSamples,
 	connections
 }: BaseRendererProps<WidgetProps>) {
-	const data = useData(connections);
+	const data = useData(connections, maxDataSamples);
 	const descriptors = useMemo(
 		() =>
 			connections.reduce(
@@ -33,7 +36,11 @@ export function Widget({
 					{title}
 				</Heading>
 				<View flexGrow={1} paddingEnd="size-200" overflow="hidden">
-					<Graph data={data} descriptors={descriptors} isArea={isArea} />
+					<Graph
+						data={data}
+						descriptors={descriptors}
+						options={{ isArea, isCartesianGrid, isHoldOnHover }}
+					/>
 				</View>
 				<View flexGrow={0} width="100%" height="size-200" />
 			</Flex>
