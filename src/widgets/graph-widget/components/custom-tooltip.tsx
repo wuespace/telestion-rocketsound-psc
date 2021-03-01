@@ -1,5 +1,5 @@
 import { Heading, View } from '@adobe/react-spectrum';
-import { roundTo } from '../lib/round-to';
+import { roundTo } from '../../lib';
 
 export interface CustomTooltipProps {
 	active: boolean;

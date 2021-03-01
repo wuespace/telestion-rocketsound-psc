@@ -10,6 +10,23 @@ const selector: StateSelector<
 	ColorSchemeState['colorScheme']
 > = state => state.colorScheme;
 
+/**
+ * Returns `true` if the application is currently in dark mode.
+ *
+ * @see {@link @wuespace/telestion-client-common#useColorScheme}
+ *
+ * @example
+ * ```ts
+ * function MyComponent() {
+ * 	const isDark = useDarkColorScheme();
+ *  return (
+ *    <div style={isDark ? { color: 'white' } : { color: 'black }}>
+ *      Hello World
+ *    </div>
+ *  );
+ * }
+ * ```
+ */
 export function useDarkColorScheme(): boolean {
 	const colorScheme = useColorScheme(selector);
 

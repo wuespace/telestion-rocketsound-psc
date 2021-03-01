@@ -6,3 +6,5 @@ export const widget: Widget<WidgetProps> = {
 	name: 'graphWidget',
 	Widget: WidgetRenderer
 };
+
+export type { WidgetProps as GraphWidgetProps } from './model';

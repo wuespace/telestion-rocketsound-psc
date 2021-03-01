@@ -1,6 +1,6 @@
 import { JsonSerializable } from '@wuespace/telestion-client-types';
 
-export type SimpleCurveType =
+export type InterpolationType =
 	| 'basis'
 	| 'basisClosed'
 	| 'basisOpen'
@@ -56,7 +56,7 @@ export interface DataSetDescriptor
 	 *
 	 * Defaults to `'monotone'`.
 	 */
-	interpolation?: SimpleCurveType;
+	interpolation?: InterpolationType;
 
 	/**
 	 * When `true` data points are displayed.

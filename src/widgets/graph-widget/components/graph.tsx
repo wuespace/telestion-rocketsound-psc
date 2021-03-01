@@ -12,22 +12,12 @@ import {
 } from 'recharts';
 
 import { DataSample, DataSetDescriptor } from '../model';
-import { roundTo } from '../lib/round-to';
-import { useDataHold, useDarkColorScheme } from '../hooks';
+import { roundTo } from '../../lib';
+import { useHoldState, useDarkColorScheme } from '../../hooks';
 
 import { CustomTooltip } from './custom-tooltip';
 
 const xTickFormatter = (value: number) => `${roundTo(value, 2)}`;
-
-const lineElements = {
-	Chart: LineChart,
-	DataRenderer: Line
-};
-
-const areaElements = {
-	Chart: AreaChart,
-	DataRenderer: Area
-};
 
 export interface GraphOptions {
 	isArea: boolean;
@@ -44,10 +34,15 @@ export interface GraphProps {
 export function Graph({ data, descriptors, options }: GraphProps) {
 	const { isArea, isCartesianGrid, isHoldOnHover } = options;
 	const isDark = useDarkColorScheme();
-	const [displayed, hold, unHold] = useDataHold(data);
+	const [displayed, hold, unHold] = useHoldState(data);
 
-	const { Chart, DataRenderer } = isArea ? areaElements : lineElements;
+	const Chart = isArea ? AreaChart : LineChart;
+	const DataRenderer = isArea ? Area : Line;
 
+	// Important note!
+	// The chart is no longer working if the components are moved
+	// in different sub components. (component chain breaks)
+	// So no cleanup or refactoring possible!
 	return (
 		<ResponsiveContainer>
 			<Chart
