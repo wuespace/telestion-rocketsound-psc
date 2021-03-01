@@ -15,7 +15,7 @@ export const userConfig: UserConfig = {
 				rows: 12,
 				widgets: [
 					{
-						widgetName: '9dof',
+						widgetName: '9dof-widget',
 						width: 3,
 						height: 4,
 						title: 'Current values'
