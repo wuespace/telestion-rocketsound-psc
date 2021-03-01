@@ -48,12 +48,12 @@ export const userConfig: UserConfig = {
 						title: 'Details',
 						initialProps: detailsGraph
 					},
-          {
+					{
 						widgetName: 'stateWidget',
 						width: 3,
 						height: 4,
 						title: 'stateWidget'
-          }
+					}
 				]
 			}
 		]
