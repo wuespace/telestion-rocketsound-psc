@@ -53,7 +53,7 @@ export function Widget() {
 	//just for initial testing: let i: number = 1;
 
 	return (
-		<LoadingIndicator dependencies={[current]} timeout={5000}>
+		<LoadingIndicator dependencies={[current]}>
 			{() => (
 				<StateDisplay state={states[current?.state || 0] || fallbackState} />
 			)}

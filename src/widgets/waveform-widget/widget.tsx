@@ -17,7 +17,7 @@ export function Widget() {
 	}, [amplitude, latestAmplitude]);
 
 	return (
-		<View padding="size-150">
+		<View padding="size-150" height="100%">
 			<Heading level={4}>Amplitude</Heading>
 			<Waveform amplitude={amplitude} xLabel="Samples" yLabel="Amplitude" />
 		</View>

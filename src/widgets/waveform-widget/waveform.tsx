@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Flex, View } from '@adobe/react-spectrum';
 import { useColorScheme } from '@wuespace/telestion-client-common';
+import AutoSizer from 'react-virtualized-auto-sizer';
 
-import { useCanvas } from './use-canvas';
+import { useCanvas } from '../hooks';
 
 export interface WaveformProps {
 	/**
@@ -25,7 +26,6 @@ export interface WaveformProps {
 export function Waveform({ amplitude, xLabel, yLabel }: WaveformProps) {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [canvasWidth, setCanvasWidth] = useState<number>(100);
-	const [canvasHeight, setCanvasHeight] = useState<number>(100);
 	const [amplitudes, setAmplitudes] = useState<number[]>([]);
 	const colorScheme = useColorScheme(state => state.colorScheme);
 
@@ -68,7 +68,6 @@ export function Waveform({ amplitude, xLabel, yLabel }: WaveformProps) {
 		// TODO: handle resizes
 		if (containerRef.current) {
 			setCanvasWidth(containerRef.current.offsetWidth);
-			setCanvasHeight(containerRef.current.offsetHeight);
 		}
 	}, [containerRef]);
 
@@ -88,15 +87,21 @@ export function Waveform({ amplitude, xLabel, yLabel }: WaveformProps) {
 	const canvasRef = useCanvas(drawWaveform);
 
 	return (
-		<View padding="size-10">
-			<Flex direction="column">
-				<Flex direction="row">
+		<View padding="size-10" height={'100%'}>
+			<Flex direction="column" height={'100%'}>
+				<Flex direction="row" flexGrow={1}>
 					<div style={yAxisStyle}>{yLabel}</div>
 					<div ref={containerRef} style={canvasContainerStyle}>
-						<canvas ref={canvasRef} width={canvasWidth} height={canvasHeight} />
+						<AutoSizer>
+							{({ width, height }) => (
+								<>
+									<canvas ref={canvasRef} width={width} height={height} />
+								</>
+							)}
+						</AutoSizer>
 					</div>
 				</Flex>
-				<Flex direction="row">
+				<Flex direction="row" flexGrow={0}>
 					<div style={{ width: '20px' }}>&nbsp;</div>
 					<div style={xAxisStyle}>{xLabel}</div>
 				</Flex>
