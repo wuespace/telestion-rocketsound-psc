@@ -59,6 +59,12 @@ export const userConfig: UserConfig = {
 						width: 3,
 						height: 4,
 						title: 'GPS Data'
+					},
+					{
+						widgetName: 'waveformWidget',
+						width: 6,
+						height: 4,
+						title: 'Amplitude Waveform'
 					}
 				]
 			}
