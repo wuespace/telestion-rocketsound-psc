@@ -1,6 +1,6 @@
 import { ReceiveMessage } from '@wuespace/telestion-client-types';
 import { DataSample, DataSetDescriptor } from '../model';
-import { isObj } from './utils';
+import { extractValue } from './extract-value';
 
 export function buildDataSample(
 	descriptors: DataSetDescriptor[],
@@ -10,21 +10,7 @@ export function buildDataSample(
 	return descriptors.reduce(
 		(acc, descriptor) => {
 			if (message) {
-				if (!isObj(message.body)) {
-					throw new TypeError(
-						`Invalid message body received. (expected: object, received: ${message.body})`
-					);
-				}
-
-				const value = message.body[descriptor.key];
-
-				if (typeof value !== 'number') {
-					throw new TypeError(
-						`Invalid value received. (expected: number, received: ${value}`
-					);
-				}
-
-				acc[descriptor.key] = value;
+				acc[descriptor.key] = extractValue(message.body, descriptor.key);
 			}
 
 			return acc;

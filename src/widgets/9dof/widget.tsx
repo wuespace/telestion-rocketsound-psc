@@ -26,7 +26,7 @@ export function Widget() {
 	const items = [
 		{ sensor: 'Accelerometer', ...latestData?.acc },
 		{ sensor: 'Gyroscope', ...latestData?.gyro },
-		{ sensor: 'Magnometer', ...latestData?.mag }
+		{ sensor: 'Magnetometer', ...latestData?.mag }
 	];
 
 	console.log(items);
@@ -44,7 +44,13 @@ export function Widget() {
 							<TableBody items={items}>
 								{(item: any) => (
 									<Row key={item.sensor + item.x + item.y + item.z}>
-										{(key: any) => <Cell>{item[key]}</Cell>}
+										{(key: any) => (
+											<Cell>
+												{typeof item[key] === 'number'
+													? Math.round(item[key] * 1000) / 1000
+													: item[key]}
+											</Cell>
+										)}
 									</Row>
 								)}
 							</TableBody>

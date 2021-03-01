@@ -13,7 +13,7 @@ import { widget as graphWidget } from './graph-widget';
 
 export const projectWidgets: Widget[] = [
 	// ARRAY_FIRST_ELEMENT_INSERT_MARK
-	graphWidget,
+	graphWidget as Widget,
 	ninedof,
 	sampleWidget
 ];

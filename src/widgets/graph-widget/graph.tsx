@@ -10,6 +10,7 @@ import {
 	Legend
 } from 'recharts';
 import { DataSample, DataSetDescriptor } from './model';
+import { useDarkColorScheme } from './hooks/use-dark-color-scheme';
 
 export interface GraphProps {
 	data: DataSample[];
@@ -18,15 +19,17 @@ export interface GraphProps {
 }
 
 export function Graph({ data, descriptors, isArea }: GraphProps) {
+	const isDark = useDarkColorScheme();
+
 	return (
 		<ResponsiveContainer>
 			{isArea ? (
 				<AreaChart data={data}>{/* TODO: Implement area chart */}</AreaChart>
 			) : (
 				<LineChart data={data}>
-					<CartesianGrid strokeDasharray="4 4" />
-					<XAxis dataKey="time" />
-					<YAxis />
+					<XAxis dataKey="time" stroke={isDark ? '#e3e3e3' : '#4b4b4b'} />
+					<YAxis stroke={isDark ? '#e3e3e3' : '#4b4b4b'} />
+					<CartesianGrid strokeDasharray="4 8" />
 					<Tooltip />
 					<Legend />
 					{descriptors.map(descriptor => (
@@ -35,7 +38,8 @@ export function Graph({ data, descriptors, isArea }: GraphProps) {
 							dataKey={descriptor.key}
 							name={descriptor.title}
 							stroke={descriptor.color}
-							dot={descriptor.isDotted}
+							dot={false}
+							isAnimationActive={false}
 						/>
 					))}
 				</LineChart>

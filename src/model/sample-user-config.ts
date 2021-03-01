@@ -9,20 +9,78 @@ const accLineGraph: WidgetProps = {
 			channel: NineDOF,
 			descriptors: [
 				{
-					key: 'acc.x',
-					title: 'Acc X',
+					key: 'result[0].acc.x',
+					title: 'Accelerometer X',
 					color: '#d21800',
 					isDotted: true
 				},
 				{
-					key: 'acc.y',
-					title: 'Acc Y',
+					key: 'result[0].acc.y',
+					title: 'Accelerometer Y',
 					color: '#00ec05',
 					isDotted: true
 				},
 				{
-					key: 'acc.y',
-					title: 'Acc Z',
+					key: 'result[0].acc.z',
+					title: 'Accelerometer Z',
+					color: '#0075ff',
+					isDotted: true
+				}
+			]
+		}
+	]
+};
+
+const gyroLineGraph: WidgetProps = {
+	isArea: false,
+	connections: [
+		{
+			channel: NineDOF,
+			descriptors: [
+				{
+					key: 'result[0].gyro.x',
+					title: 'Gyroscope X',
+					color: '#d21800',
+					isDotted: true
+				},
+				{
+					key: 'result[0].gyro.y',
+					title: 'Gyroscope Y',
+					color: '#00ec05',
+					isDotted: true
+				},
+				{
+					key: 'result[0].gyro.z',
+					title: 'Gyroscope Z',
+					color: '#0075ff',
+					isDotted: true
+				}
+			]
+		}
+	]
+};
+
+const magLineGraph: WidgetProps = {
+	isArea: false,
+	connections: [
+		{
+			channel: NineDOF,
+			descriptors: [
+				{
+					key: 'result[0].mag.x',
+					title: 'Magnetometer X',
+					color: '#d21800',
+					isDotted: true
+				},
+				{
+					key: 'result[0].mag.y',
+					title: 'Magnetometer Y',
+					color: '#00ec05',
+					isDotted: true
+				},
+				{
+					key: 'result[0].mag.z',
+					title: 'Magnetometer Z',
 					color: '#0075ff',
 					isDotted: true
 				}
@@ -36,45 +94,35 @@ export const userConfig: UserConfig = {
 		dashboards: [
 			{
 				title: 'Overview',
-				columns: 4,
-				rows: 4,
+				columns: 12,
+				rows: 12,
 				widgets: [
 					{
-						widgetName: 'sampleWidget',
-						width: 4,
-						height: 1,
-						title: 'Widget 1'
-					},
-					{
 						widgetName: '9dof',
-						width: 2,
-						height: 2,
-						title: 'Widget 2'
+						width: 3,
+						height: 4,
+						title: 'Current values'
 					},
 					{
-						widgetName: 'lineGraphWidget',
-						width: 2,
-						height: 1,
-						title: 'Widget 3',
+						widgetName: 'graphWidget',
+						width: 3,
+						height: 4,
+						title: 'Accelerometer',
 						initialProps: accLineGraph
 					},
 					{
-						widgetName: 'Widget4',
-						width: 1,
-						height: 1,
-						title: 'Widget 4'
+						widgetName: 'graphWidget',
+						width: 3,
+						height: 4,
+						title: 'Gyroscope',
+						initialProps: gyroLineGraph
 					},
 					{
-						widgetName: 'Widget5',
-						width: 1,
-						height: 2,
-						title: 'Widget 5'
-					},
-					{
-						widgetName: 'Widget6',
-						width: 1,
-						height: 3,
-						title: 'Widget 6'
+						widgetName: 'graphWidget',
+						width: 3,
+						height: 4,
+						title: 'Magnetometer',
+						initialProps: magLineGraph
 					}
 				]
 			}

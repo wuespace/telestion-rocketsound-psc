@@ -26,7 +26,7 @@ export function useCallbacks(
 						// build current time diff from start
 						const time = (new Date().getTime() - initialDate.getTime()) / 1000;
 						const dataSample = buildDataSample(descriptors, message, time);
-						setData(prevState => [...prevState, dataSample]);
+						setData(prevState => [...prevState.slice(-20), dataSample]);
 					} catch (err) {
 						setError(err);
 					}
