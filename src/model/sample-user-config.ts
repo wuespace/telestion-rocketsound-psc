@@ -53,6 +53,12 @@ export const userConfig: UserConfig = {
 						width: 3,
 						height: 4,
 						title: 'stateWidget'
+					},
+					{
+						widgetName: 'mapwidget',
+						width: 3,
+						height: 4,
+						title: 'GPS Data'
 					}
 				]
 			}
