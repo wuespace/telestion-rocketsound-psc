@@ -32,23 +32,18 @@ export function useData(
 	const [data, setData] = useState<DataSample[]>([]);
 	const callbacks = useCallbacks(connections, setData, maxDataSamples);
 
-	if (!eventBus) {
-		throw new TypeError(
-			'There is no eventbus instance to subscribe to. ' +
-				'Please check if the eventbus was created and try again.'
-		);
-	}
-
 	useEffect(() => {
-		// register all callbacks
-		callbacks.forEach(([channel, callback]) =>
-			eventBus.registerHandler(channel, callback)
-		);
-		// unregister all callbacks
-		return () =>
+		if (eventBus) {
+			// register all callbacks
 			callbacks.forEach(([channel, callback]) =>
-				eventBus.unregisterHandler(channel, callback)
+				eventBus.registerHandler(channel, callback)
 			);
+			// unregister all callbacks
+			return () =>
+				callbacks.forEach(([channel, callback]) =>
+					eventBus.unregisterHandler(channel, callback)
+				);
+		}
 	}, [callbacks, connections, eventBus]);
 
 	return data;
