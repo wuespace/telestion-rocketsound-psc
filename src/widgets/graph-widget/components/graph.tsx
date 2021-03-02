@@ -92,6 +92,7 @@ export function Graph({ data, descriptors, options }: GraphProps) {
 				{descriptors.map((descriptor, index) => (
 					// @ts-ignore
 					<DataRenderer
+						key={descriptor.key}
 						type={descriptor.interpolation || 'monotone'}
 						dataKey={descriptor.key}
 						name={descriptor.title}
