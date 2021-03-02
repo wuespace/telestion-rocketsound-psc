@@ -1,4 +1,5 @@
 import { JsonSerializable } from '@wuespace/telestion-client-types';
+import { SpectrumColor } from '../../../model/spectrum-color';
 
 export type InterpolationType =
 	| 'basis'
@@ -42,7 +43,7 @@ export interface DataSetDescriptor
 	/**
 	 * The color of the data set.
 	 */
-	color: string;
+	color: SpectrumColor;
 
 	/**
 	 * The stroke width in pixels.

@@ -13,17 +13,17 @@ export const accLineGraph: GraphWidgetProps = {
 				{
 					key: 'result[0].acc.x',
 					title: 'Accelerometer X',
-					color: '#d21800'
+					color: 'red-500'
 				},
 				{
 					key: 'result[0].acc.y',
 					title: 'Accelerometer Y',
-					color: '#00ec05'
+					color: 'green-500'
 				},
 				{
 					key: 'result[0].acc.z',
 					title: 'Accelerometer Z',
-					color: '#0075ff'
+					color: 'blue-500'
 				}
 			]
 		}
@@ -42,17 +42,17 @@ export const gyroLineGraph: GraphWidgetProps = {
 				{
 					key: 'result[0].gyro.x',
 					title: 'Gyroscope X',
-					color: '#d21800'
+					color: 'red-500'
 				},
 				{
 					key: 'result[0].gyro.y',
 					title: 'Gyroscope Y',
-					color: '#00ec05'
+					color: 'green-500'
 				},
 				{
 					key: 'result[0].gyro.z',
 					title: 'Gyroscope Z',
-					color: '#0075ff'
+					color: 'blue-500'
 				}
 			]
 		}
@@ -71,17 +71,17 @@ export const magLineGraph: GraphWidgetProps = {
 				{
 					key: 'result[0].mag.x',
 					title: 'Magnetometer X',
-					color: '#d21800'
+					color: 'red-500'
 				},
 				{
 					key: 'result[0].mag.y',
 					title: 'Magnetometer Y',
-					color: '#00ec05'
+					color: 'green-500'
 				},
 				{
 					key: 'result[0].mag.z',
 					title: 'Magnetometer Z',
-					color: '#0075ff'
+					color: 'blue-500'
 				}
 			]
 		}
@@ -100,12 +100,12 @@ export const detailsGraph: GraphWidgetProps = {
 				{
 					key: 'result[0].gyro.z',
 					title: 'Gyroscope Z',
-					color: '#6c18ba'
+					color: 'purple-500'
 				},
 				{
 					key: 'result[0].acc.x',
 					title: 'Accelerometer X',
-					color: '#ec9401',
+					color: 'orange-500',
 					isDotted: false,
 					strokeWidth: 2
 				}
