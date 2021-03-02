@@ -1,8 +1,8 @@
 import { Flex, View, Text } from '@adobe/react-spectrum';
 import AutoSizer from 'react-virtualized-auto-sizer';
-
-import { useDarkColorScheme } from '../hooks';
 import { ChannelAddress } from '@wuespace/telestion-client-types';
+
+import { SpectrumColor } from '../../model/spectrum-color';
 import { CanvasRenderer } from './canvas-renderer';
 
 export interface WaveformProps {
@@ -17,36 +17,25 @@ export interface WaveformProps {
 	yLabel: string;
 
 	channel: ChannelAddress;
+
+	stroke: SpectrumColor;
+
+	minValue: number;
+
+	maxValue: number;
 }
 
 /**
  * A basic waveform component displaying amplitudes on a HTMLCanvas.
  */
-export function Waveform({ xLabel, yLabel, channel }: WaveformProps) {
-	const isDark = useDarkColorScheme();
-
-	// const canvasContainerStyle: React.CSSProperties = {
-	// 	width: '100%',
-	// 	height: '100%',
-	// 	backgroundColor: isDark ? 'gray' : 'white',
-	// 	border: '1px dotted gray',
-	// 	borderRadius: '5px',
-	// 	display: 'flex',
-	// 	alignItems: 'center'
-	// };
-	//
-	// const yAxisStyle: React.CSSProperties = {
-	// 	writingMode: 'vertical-rl',
-	// 	transform: 'rotate(180deg)',
-	// 	textAlign: 'center',
-	// 	width: '20px'
-	// };
-	//
-	// const xAxisStyle: React.CSSProperties = {
-	// 	textAlign: 'center',
-	// 	width: `${canvasWidth}px` // ????
-	// };
-
+export function Waveform({
+	xLabel,
+	yLabel,
+	channel,
+	stroke,
+	minValue,
+	maxValue
+}: WaveformProps) {
 	return (
 		<View padding="size-10" height="100%">
 			<Flex flexGrow={0} direction="row" height="100%">
@@ -73,19 +62,24 @@ export function Waveform({ xLabel, yLabel, channel }: WaveformProps) {
 					<View
 						flexGrow={1}
 						width="100%"
-						backgroundColor="gray-900"
-						borderColor="gray-700"
+						backgroundColor="gray-100"
+						borderColor="gray-200"
 						borderWidth="thick"
 					>
-						<AutoSizer>
-							{({ width, height }) => (
-								<CanvasRenderer
-									channel={channel}
-									width={width}
-									height={height}
-								/>
-							)}
-						</AutoSizer>
+						<View width="100%" height="100%">
+							<AutoSizer>
+								{({ width, height }) => (
+									<CanvasRenderer
+										channel={channel}
+										width={width}
+										height={height}
+										stroke={stroke}
+										minValue={minValue}
+										maxValue={maxValue}
+									/>
+								)}
+							</AutoSizer>
+						</View>
 					</View>
 
 					<Flex
@@ -97,28 +91,6 @@ export function Waveform({ xLabel, yLabel, channel }: WaveformProps) {
 					</Flex>
 				</Flex>
 			</Flex>
-
-			{/*<Flex direction="column" height={'100%'}>*/}
-			{/*	<Flex direction="row" flexGrow={1}>*/}
-			{/*		<View>{yLabel}</View>*/}
-			{/*		<div style={yAxisStyle}>{yLabel}</div>*/}
-			{/*		<div style={canvasContainerStyle}>*/}
-			{/*			<AutoSizer>*/}
-			{/*				{({ width, height }) => (*/}
-			{/*					<CanvasRenderer*/}
-			{/*						channel={channel}*/}
-			{/*						width={width}*/}
-			{/*						height={height}*/}
-			{/*					/>*/}
-			{/*				)}*/}
-			{/*			</AutoSizer>*/}
-			{/*		</div>*/}
-			{/*	</Flex>*/}
-			{/*	<Flex direction="row" flexGrow={0}>*/}
-			{/*		<div style={{ width: '20px' }}>&nbsp;</div>*/}
-			{/*		<div style={xAxisStyle}>{xLabel}</div>*/}
-			{/*	</Flex>*/}
-			{/*</Flex>*/}
 		</View>
 	);
 }

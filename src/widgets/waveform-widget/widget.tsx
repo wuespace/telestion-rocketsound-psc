@@ -1,10 +1,18 @@
 import { View, Heading, Flex } from '@adobe/react-spectrum';
 import { BaseRendererProps } from '@wuespace/telestion-client-types';
 
-import { Amplitude } from '../../model/channels';
+import { WidgetProps } from './model';
 import { Waveform } from './waveform';
 
-export function Widget({ title }: BaseRendererProps) {
+export function Widget({
+	title,
+	channel,
+	xLabel,
+	yLabel,
+	stroke,
+	minValue,
+	maxValue
+}: BaseRendererProps<WidgetProps>) {
 	return (
 		<View width="100%" height="100%">
 			<Flex direction="column" width="100%" height="100%">
@@ -12,7 +20,14 @@ export function Widget({ title }: BaseRendererProps) {
 					{title}
 				</Heading>
 				<View flexGrow={1} paddingEnd="size-200">
-					<Waveform xLabel="Samples" yLabel="Amplitude" channel={Amplitude} />
+					<Waveform
+						channel={channel}
+						xLabel={xLabel}
+						yLabel={yLabel}
+						stroke={stroke}
+						minValue={minValue}
+						maxValue={maxValue}
+					/>
 				</View>
 			</Flex>
 		</View>

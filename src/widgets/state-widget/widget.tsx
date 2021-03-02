@@ -1,9 +1,10 @@
-import { StateDisplay } from './StateDisplay';
 import { useChannelLatest } from '@wuespace/telestion-client-core';
 import { LoadingIndicator } from '@wuespace/telestion-client-common';
+
 import { FlightState } from '../../model/channels';
-import { FlightStateMessage } from '../../model/messages/flight-state';
+import { FlightStateMessage } from '../../model/messages';
 import { State } from './state.model';
+import { StateDisplay } from './StateDisplay';
 
 const states: { [key: number]: State } = {
 	0: {
@@ -44,13 +45,10 @@ const states: { [key: number]: State } = {
 	}
 };
 
-const fallbackState: State = states[0]; // can be anything (displayed when nothing is arriving)
+const fallbackState: State = states[0];
 
 export function Widget() {
 	const current = useChannelLatest<FlightStateMessage>(FlightState)?.result[0];
-	//Received: record with an int corresponding to a state
-
-	//just for initial testing: let i: number = 1;
 
 	return (
 		<LoadingIndicator dependencies={[current]}>

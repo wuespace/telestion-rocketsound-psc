@@ -1,10 +1,22 @@
 import { UserConfig } from '@wuespace/telestion-client-types';
+
 import {
 	accLineGraph,
 	detailsGraph,
 	gyroLineGraph,
 	magLineGraph
 } from './sample-graph-definitions';
+import { Amplitude } from './channels';
+import { WaveformWidgetProps } from '../widgets/waveform-widget';
+
+const waveformProps: WaveformWidgetProps = {
+	xLabel: 'Samples',
+	yLabel: 'Amplitude',
+	channel: Amplitude,
+	stroke: 'purple-500',
+	minValue: 0,
+	maxValue: 20
+};
 
 export const userConfigOld: UserConfig = {
 	admin: {
@@ -64,7 +76,8 @@ export const userConfigOld: UserConfig = {
 						widgetName: 'waveformWidget',
 						width: 6,
 						height: 4,
-						title: 'Amplitude Waveform'
+						title: 'Amplitude Waveform',
+						initialProps: waveformProps
 					}
 				]
 			}
@@ -130,7 +143,8 @@ export const userConfig: UserConfig = {
 						widgetName: 'waveformWidget',
 						width: 4,
 						height: 4,
-						title: 'Amplitude Waveform'
+						title: 'Amplitude Waveform',
+						initialProps: waveformProps
 					}
 				]
 			}

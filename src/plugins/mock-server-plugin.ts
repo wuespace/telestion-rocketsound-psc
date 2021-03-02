@@ -1,9 +1,8 @@
 import http from 'http';
 import sockjs from 'sockjs';
-import { Amplitude, FlightState, NineDOF } from '../model/channels';
-import { NineDofMessage } from '../model/messages/nine-dof';
-import { AmplitudeMessage } from '../model/messages/amplitude';
-import { FlightStateMessage } from '../model/messages/flight-state';
+
+import { Amplitude, FlightState } from '../model/channels';
+import { AmplitudeMessage, FlightStateMessage } from '../model/messages';
 
 export function onReady() {
 	if (
@@ -110,7 +109,7 @@ export function onReady() {
 
 				connection.write(bare2); // stringify entire message!
 				console.log('<---   Message sent     -', bare2);
-			}, 2000); // sends message every 2 seconds
+			}, 400); // sends message every 2 seconds
 
 			connection.on('data', message => {
 				console.log('--->   Message received -', message);

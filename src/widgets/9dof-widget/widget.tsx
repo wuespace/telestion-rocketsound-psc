@@ -3,7 +3,7 @@ import { useChannelLatest } from '@wuespace/telestion-client-core';
 import { LoadingIndicator } from '@wuespace/telestion-client-common';
 import { BaseRendererProps } from '@wuespace/telestion-client-types';
 
-import { NineDofMessage } from '../../model/messages/nine-dof';
+import { NineDofMessage } from '../../model/messages';
 import { NineDOF } from '../../model/channels';
 
 import { Table } from './table';

@@ -10,7 +10,7 @@ import {
 } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet/dist/leaflet.js';
-import { GpsDataMessage } from '../../model/messages/gps-data';
+import { GpsDataMessage } from '../../model/messages';
 import { GpsData } from '../../model/channels';
 
 const noBounds = new LatLngBounds(new LatLng(180, 180), new LatLng(-180, -180));

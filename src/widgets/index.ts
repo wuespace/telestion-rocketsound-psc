@@ -21,5 +21,5 @@ export const projectWidgets: Widget[] = [
 	graphWidget as Widget,
 	nineDofWidget,
 	sampleWidget,
-	waveformWidget
+	waveformWidget as Widget
 ];
