@@ -19,7 +19,7 @@ export function CustomTooltip({ active, label, payload }: CustomTooltipProps) {
 					Time: {roundTo(label, 2)}s
 				</Heading>
 				{payload.map(({ name, value }) => (
-					<div>
+					<div key={name}>
 						{name}: {roundTo(value, 4)}
 					</div>
 				))}

@@ -13,7 +13,7 @@ import {
 
 import { DataSample, DataSetDescriptor } from '../model';
 import { roundTo } from '../../lib';
-import { useHoldState, useDarkColorScheme } from '../../hooks';
+import { useHoldState, useSpectrumColor } from '../../hooks';
 
 import { CustomTooltip } from './custom-tooltip';
 
@@ -33,7 +33,14 @@ export interface GraphProps {
 
 export function Graph({ data, descriptors, options }: GraphProps) {
 	const { isArea, isCartesianGrid, isHoldOnHover } = options;
-	const isDark = useDarkColorScheme();
+	const [background, grid, axis] = useSpectrumColor([
+		'gray-100',
+		'gray-400',
+		'gray-800'
+	]);
+	const colors = useSpectrumColor(
+		descriptors.map(descriptor => descriptor.color)
+	);
 	const [displayed, hold, unHold] = useHoldState(data);
 
 	const Chart = isArea ? AreaChart : LineChart;
@@ -62,34 +69,22 @@ export function Graph({ data, descriptors, options }: GraphProps) {
 								x2={0}
 								y2={1}
 							>
-								<stop
-									offset="5%"
-									stopColor={descriptor.color}
-									stopOpacity={0.8}
-								/>
-								<stop
-									offset="95%"
-									stopColor={isDark ? '#1e1e1e' : '#f5f5f5'}
-									stopOpacity={0}
-								/>
+								<stop offset="5%" stopColor={colors[index]} stopOpacity={0.8} />
+								<stop offset="95%" stopColor={background} stopOpacity={0} />
 							</linearGradient>
 						))}
 					</defs>
 				)}
 				{isCartesianGrid && (
-					<CartesianGrid
-						strokeDasharray="4 8"
-						strokeWidth={1}
-						stroke={isDark ? '#494949' : '#cacaca'}
-					/>
+					<CartesianGrid strokeDasharray="4 8" strokeWidth={1} stroke={grid} />
 				)}
 				<XAxis
 					dataKey="time"
 					unit="s"
 					tickFormatter={xTickFormatter}
-					stroke={isDark ? '#e3e3e3' : '#4b4b4b'}
+					stroke={axis}
 				/>
-				<YAxis stroke={isDark ? '#e3e3e3' : '#4b4b4b'} />
+				<YAxis stroke={axis} />
 				{/*// @ts-ignore*/}
 				<Tooltip content={<CustomTooltip />} />
 				<Legend />
@@ -97,10 +92,11 @@ export function Graph({ data, descriptors, options }: GraphProps) {
 				{descriptors.map((descriptor, index) => (
 					// @ts-ignore
 					<DataRenderer
+						key={descriptor.key}
 						type={descriptor.interpolation || 'monotone'}
 						dataKey={descriptor.key}
 						name={descriptor.title}
-						stroke={descriptor.color}
+						stroke={colors[index]}
 						strokeWidth={descriptor.strokeWidth || 1}
 						dot={descriptor.isDotted || false}
 						strokeDasharray={descriptor.isDashed || false ? '4 8' : undefined}

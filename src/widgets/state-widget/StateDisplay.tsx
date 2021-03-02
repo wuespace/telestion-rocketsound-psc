@@ -15,25 +15,27 @@ export interface StateDisplayProps {
 
 export function StateDisplay({ state }: StateDisplayProps) {
 	return (
-		<View padding="size-250">
+		<View padding="size-200">
 			<Flex direction="column" alignItems="start">
-				<Heading level={2}>State Machine State </Heading>
+				<Heading level={3} marginTop={0}>
+					State Machine State
+				</Heading>
 
-				<Divider size="M" marginY="single-line-height" />
+				<Divider size="M" />
 
-				<Text marginY="size-50"> Current State: </Text>
+				<Text marginTop="size-200">Current State:</Text>
 
-				<Flex gap="size-400">
-					<Content marginY="size-100" UNSAFE_style={{ fontSize: '1.5em' }}>
+				<Flex gap="size-200" marginTop="size-100" alignItems="center">
+					<Content UNSAFE_style={{ fontSize: '1.5em' }}>
 						{state.currentState}
 					</Content>
-					<Badge special={state.isSpecial}> {state.tagName} </Badge>
+					<Badge special={state.isSpecial}>{state.tagName}</Badge>
 				</Flex>
 
-				<Divider size="M" marginY="single-line-height" />
+				<Divider size="M" marginY="size-200" />
 
-				<Text marginY="size-50"> Next State: </Text>
-				<Content marginY="size-100" UNSAFE_style={{ fontSize: '1.5em' }}>
+				<Text>Next State:</Text>
+				<Content marginTop="size-100" UNSAFE_style={{ fontSize: '1.5em' }}>
 					{state.nextState}
 				</Content>
 			</Flex>

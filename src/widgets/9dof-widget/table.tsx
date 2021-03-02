@@ -26,11 +26,12 @@ function display(value: ItemValue): string | number {
 export interface TableProps {
 	columns: ColumnType[];
 	items: ItemType[];
+	ariaLabel: string;
 }
 
-export function Table({ columns, items }: TableProps) {
+export function Table({ columns, items, ariaLabel }: TableProps) {
 	return (
-		<RSTable>
+		<RSTable aria-label={ariaLabel}>
 			<TableHeader columns={columns}>
 				{column => <Column>{column.name}</Column>}
 			</TableHeader>

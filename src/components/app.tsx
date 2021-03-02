@@ -32,7 +32,7 @@ export function App() {
 
 	return (
 		<TelestionClient
-			title="Telestion Groundstation"
+			title="RocketSound Groundstation"
 			wrapper={children => (
 				<CommonWrapper widgets={widgets}>
 					<>{children}</>
