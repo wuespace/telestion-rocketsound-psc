@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useChannelLatest } from '@wuespace/telestion-client-core';
-import { Divider, Flex, Heading, Switch } from '@adobe/react-spectrum';
+import { Flex, Heading, Switch } from '@adobe/react-spectrum';
 import { LatLng, LatLngBounds, Map } from 'leaflet';
 import {
 	CircleMarker,
@@ -29,19 +29,18 @@ export function Widget() {
 	const bounds = isBounded ? mapBounds : noBounds;
 
 	return (
-		<Flex direction={'column'} height={'100%'} gap={'size-100'}>
+		<Flex direction="column" height="100%">
 			<Flex
-				direction={'row'}
-				alignItems={'center'}
-				justifyContent={'space-between'}
-				marginStart={'size-100'}
+				direction="row"
+				alignItems="center"
+				justifyContent="space-between"
+				marginStart="size-200"
 			>
 				<Heading>Map</Heading>
 				<Switch isSelected={!isBounded} onChange={state => setBounded(!state)}>
 					Expert Mode (disable boundaries)
 				</Switch>
 			</Flex>
-			<Divider />
 			<MapContainer
 				style={{ height: '100%' }}
 				center={mapCenter}
