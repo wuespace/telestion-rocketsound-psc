@@ -5,6 +5,7 @@ export const accLineGraph: GraphWidgetProps = {
 	isArea: false,
 	isCartesianGrid: false,
 	isHoldOnHover: true,
+	isTooltip: true,
 	maxDataSamples: 20,
 	connections: [
 		{
@@ -34,6 +35,7 @@ export const gyroLineGraph: GraphWidgetProps = {
 	isArea: false,
 	isCartesianGrid: false,
 	isHoldOnHover: true,
+	isTooltip: true,
 	maxDataSamples: 20,
 	connections: [
 		{
@@ -63,6 +65,7 @@ export const magLineGraph: GraphWidgetProps = {
 	isArea: false,
 	isCartesianGrid: false,
 	isHoldOnHover: true,
+	isTooltip: true,
 	maxDataSamples: 20,
 	connections: [
 		{
@@ -92,6 +95,7 @@ export const detailsGraph: GraphWidgetProps = {
 	isArea: true,
 	isCartesianGrid: true,
 	isHoldOnHover: true,
+	isTooltip: true,
 	maxDataSamples: 60,
 	connections: [
 		{

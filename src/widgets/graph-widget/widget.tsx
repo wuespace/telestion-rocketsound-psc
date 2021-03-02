@@ -11,6 +11,7 @@ export function Widget({
 	isArea,
 	isCartesianGrid,
 	isHoldOnHover,
+	isTooltip,
 	maxDataSamples,
 	connections
 }: BaseRendererProps<WidgetProps>) {
@@ -39,7 +40,7 @@ export function Widget({
 					<Graph
 						data={data}
 						descriptors={descriptors}
-						options={{ isArea, isCartesianGrid, isHoldOnHover }}
+						options={{ isArea, isCartesianGrid, isHoldOnHover, isTooltip }}
 					/>
 				</View>
 				<View flexGrow={0} width="100%" height="size-200" />
