@@ -17,8 +17,8 @@ export function Badge({
 			borderWidth={'thick'}
 			borderColor={special ? 'red-500' : 'gray-400'}
 			borderRadius={'regular'}
-			paddingX={'size-150'}
-			paddingY={'size-150 '}
+			paddingX={'size-100'}
+			paddingY={'size-50'}
 		>
 			{children}
 		</View>
