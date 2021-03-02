@@ -1,4 +1,14 @@
-# 0.1.0 (2021-03-02)
+# [0.2.0](https://github.com/TelestionTeam/telestion-rocketsound-psc/compare/v0.1.0...v0.2.0) (2021-03-02)
+
+
+### Features
+
+* **dashboard:** Add BaroData graphs ([45a2a60](https://github.com/TelestionTeam/telestion-rocketsound-psc/commit/45a2a6017c4d7beb043c02dc0ee9036caffe5954))
+* **widget:** In graph widget enable and disable state of tooltip is now possible ([e451b92](https://github.com/TelestionTeam/telestion-rocketsound-psc/commit/e451b929297979cc9fa30fde23229d3fa65c512e))
+
+
+
+# [0.1.0](https://github.com/TelestionTeam/telestion-rocketsound-psc/compare/bf48d3371770e24e7dd04b0027f03307f0303c19...v0.1.0) (2021-03-02)
 
 
 ### Bug Fixes
