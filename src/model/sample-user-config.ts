@@ -6,7 +6,7 @@ import {
 	magLineGraph
 } from './sample-graph-definitions';
 
-export const userConfig: UserConfig = {
+export const userConfigOld: UserConfig = {
 	admin: {
 		dashboards: [
 			{
@@ -63,6 +63,72 @@ export const userConfig: UserConfig = {
 					{
 						widgetName: 'waveformWidget',
 						width: 6,
+						height: 4,
+						title: 'Amplitude Waveform'
+					}
+				]
+			}
+		]
+	}
+};
+
+export const userConfig: UserConfig = {
+	admin: {
+		dashboards: [
+			{
+				title: 'Overview',
+				columns: 12,
+				rows: 12,
+				widgets: [
+					{
+						widgetName: '9dof-widget',
+						width: 3,
+						height: 4,
+						title: 'Current values'
+					},
+					{
+						widgetName: 'graphWidget',
+						width: 3,
+						height: 4,
+						title: 'Accelerometer',
+						initialProps: accLineGraph
+					},
+					{
+						widgetName: 'graphWidget',
+						width: 3,
+						height: 4,
+						title: 'Gyroscope',
+						initialProps: gyroLineGraph
+					},
+					{
+						widgetName: 'graphWidget',
+						width: 3,
+						height: 4,
+						title: 'Magnetometer',
+						initialProps: magLineGraph
+					},
+					{
+						widgetName: 'graphWidget',
+						width: 6,
+						height: 4,
+						title: 'Details',
+						initialProps: detailsGraph
+					},
+					{
+						widgetName: 'stateWidget',
+						width: 2,
+						height: 4,
+						title: 'stateWidget'
+					},
+					{
+						widgetName: 'mapwidget',
+						width: 4,
+						height: 8,
+						title: 'GPS Data'
+					},
+					{
+						widgetName: 'waveformWidget',
+						width: 4,
 						height: 4,
 						title: 'Amplitude Waveform'
 					}

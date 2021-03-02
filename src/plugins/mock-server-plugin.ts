@@ -1,7 +1,9 @@
 import http from 'http';
 import sockjs from 'sockjs';
-import { NineDOF } from '../model/channels';
+import { Amplitude, FlightState, NineDOF } from '../model/channels';
 import { NineDofMessage } from '../model/messages/nine-dof';
+import { AmplitudeMessage } from '../model/messages/amplitude';
+import { FlightStateMessage } from '../model/messages/flight-state';
 
 export function onReady() {
 	if (
@@ -11,18 +13,17 @@ export function onReady() {
 		console.log('listening');
 
 		// change channel address HERE
-		const address = NineDOF;
+		const address = Amplitude;
 
 		// add messages HERE (will loop around)
-		const messages: NineDofMessage[] = [
+		const messages: AmplitudeMessage[] = [
 			{
 				className: 'abc',
 				dataType: 'abc',
 				result: [
 					{
-						acc: { x: 1, y: 2, z: 3 },
-						gyro: { x: 1, y: 2, z: 3 },
-						mag: { x: 1, y: 2, z: 3 }
+						amplitude: 3,
+						className: 'hello'
 					}
 				]
 			},
@@ -31,13 +32,53 @@ export function onReady() {
 				dataType: 'abc',
 				result: [
 					{
-						acc: { x: 3, y: 2, z: 3 },
-						gyro: { x: 3, y: 2, z: 3 },
-						mag: { x: 3, y: 2, z: 3 }
+						amplitude: 5,
+						className: 'hello'
+					}
+				]
+			},
+			{
+				className: 'abc',
+				dataType: 'abc',
+				result: [
+					{
+						amplitude: 8,
+						className: 'hello'
+					}
+				]
+			},
+			{
+				className: 'abc',
+				dataType: 'abc',
+				result: [
+					{
+						amplitude: 10,
+						className: 'hello'
+					}
+				]
+			},
+			{
+				className: 'abc',
+				dataType: 'abc',
+				result: [
+					{
+						amplitude: 4,
+						className: 'hello'
 					}
 				]
 			}
 		];
+
+		const flightState: FlightStateMessage = {
+			dataType: 'abc',
+			className: 'abc',
+			result: [
+				{
+					state: 2,
+					name: 'Help me'
+				}
+			]
+		};
 
 		// implementation
 		const eventBus = sockjs.createServer();
@@ -58,6 +99,17 @@ export function onReady() {
 
 				connection.write(bare); // stringify entire message!
 				console.log('<---   Message sent     -', bare);
+
+				const message2 = {
+					type: 'rec',
+					address: FlightState,
+					body: flightState
+				};
+
+				const bare2 = JSON.stringify(message2);
+
+				connection.write(bare2); // stringify entire message!
+				console.log('<---   Message sent     -', bare2);
 			}, 2000); // sends message every 2 seconds
 
 			connection.on('data', message => {

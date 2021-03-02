@@ -1,111 +1,124 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Flex, View } from '@adobe/react-spectrum';
-import { useColorScheme } from '@wuespace/telestion-client-common';
+import { Flex, View, Text } from '@adobe/react-spectrum';
 import AutoSizer from 'react-virtualized-auto-sizer';
 
-import { useCanvas } from '../hooks';
+import { useDarkColorScheme } from '../hooks';
+import { ChannelAddress } from '@wuespace/telestion-client-types';
+import { CanvasRenderer } from './canvas-renderer';
 
 export interface WaveformProps {
-	/**
-	 * The most recent value to be displayed at the end of the waveform.
-	 */
-	amplitude: number;
 	/**
 	 * Text label for the x-axis.
 	 */
 	xLabel: string;
+
 	/**
 	 * Text label for the y-axis.
 	 */
 	yLabel: string;
+
+	channel: ChannelAddress;
 }
 
 /**
  * A basic waveform component displaying amplitudes on a HTMLCanvas.
  */
-export function Waveform({ amplitude, xLabel, yLabel }: WaveformProps) {
-	const containerRef = useRef<HTMLDivElement>(null);
-	const [canvasWidth, setCanvasWidth] = useState<number>(100);
-	const [amplitudes, setAmplitudes] = useState<number[]>([]);
-	const colorScheme = useColorScheme(state => state.colorScheme);
+export function Waveform({ xLabel, yLabel, channel }: WaveformProps) {
+	const isDark = useDarkColorScheme();
 
-	const canvasContainerStyle: React.CSSProperties = {
-		width: '100%',
-		height: '100%',
-		backgroundColor: colorScheme.match('dark') ? 'gray' : 'white',
-		border: '1px dotted gray',
-		borderRadius: '5px',
-		display: 'flex',
-		alignItems: 'center'
-	};
-
-	const yAxisStyle: React.CSSProperties = {
-		writingMode: 'vertical-rl',
-		transform: 'rotate(180deg)',
-		textAlign: 'center',
-		width: '20px'
-	};
-
-	const xAxisStyle: React.CSSProperties = {
-		textAlign: 'center',
-		width: `${canvasWidth}px`
-	};
-
-	useEffect(() => {
-		if (amplitudes.length < Math.floor(canvasWidth * 0.9)) {
-			setAmplitudes(prevAmps => [...prevAmps, amplitude]);
-		} else {
-			setAmplitudes(prevAmps => {
-				let shifted = [...prevAmps];
-				shifted.shift();
-				shifted.push(amplitude);
-				return shifted;
-			});
-		}
-	}, [amplitude]);
-
-	useEffect(() => {
-		// TODO: handle resizes
-		if (containerRef.current) {
-			setCanvasWidth(containerRef.current.offsetWidth);
-		}
-	}, [containerRef]);
-
-	const drawWaveform = (ctx: CanvasRenderingContext2D) => {
-		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-		ctx.lineWidth = 1;
-		ctx.lineCap = 'round';
-		ctx.strokeStyle = '#452897';
-		ctx.beginPath();
-		for (let i = 0; i < amplitudes.length; i++) {
-			ctx.moveTo(i, ctx.canvas.height);
-			ctx.lineTo(i, ctx.canvas.height - amplitudes[i]);
-		}
-		ctx.stroke();
-	};
-
-	const canvasRef = useCanvas(drawWaveform);
+	// const canvasContainerStyle: React.CSSProperties = {
+	// 	width: '100%',
+	// 	height: '100%',
+	// 	backgroundColor: isDark ? 'gray' : 'white',
+	// 	border: '1px dotted gray',
+	// 	borderRadius: '5px',
+	// 	display: 'flex',
+	// 	alignItems: 'center'
+	// };
+	//
+	// const yAxisStyle: React.CSSProperties = {
+	// 	writingMode: 'vertical-rl',
+	// 	transform: 'rotate(180deg)',
+	// 	textAlign: 'center',
+	// 	width: '20px'
+	// };
+	//
+	// const xAxisStyle: React.CSSProperties = {
+	// 	textAlign: 'center',
+	// 	width: `${canvasWidth}px` // ????
+	// };
 
 	return (
-		<View padding="size-10" height={'100%'}>
-			<Flex direction="column" height={'100%'}>
-				<Flex direction="row" flexGrow={1}>
-					<div style={yAxisStyle}>{yLabel}</div>
-					<div ref={containerRef} style={canvasContainerStyle}>
+		<View padding="size-10" height="100%">
+			<Flex flexGrow={0} direction="row" height="100%">
+				<Flex direction="column">
+					<Flex flexGrow={1} justifyContent="center" alignItems="center">
+						<Text
+							UNSAFE_style={{
+								writingMode: 'vertical-rl',
+								transform: 'rotate(180deg)'
+							}}
+						>
+							{yLabel}
+						</Text>
+					</Flex>
+					{/* spacer */}
+					<View
+						flexGrow={0}
+						width="single-line-height"
+						height="single-line-height"
+					/>
+				</Flex>
+
+				<Flex flexGrow={1} direction="column">
+					<View
+						flexGrow={1}
+						width="100%"
+						backgroundColor="gray-900"
+						borderColor="gray-700"
+						borderWidth="thick"
+					>
 						<AutoSizer>
 							{({ width, height }) => (
-								<>
-									<canvas ref={canvasRef} width={width} height={height} />
-								</>
+								<CanvasRenderer
+									channel={channel}
+									width={width}
+									height={height}
+								/>
 							)}
 						</AutoSizer>
-					</div>
-				</Flex>
-				<Flex direction="row" flexGrow={0}>
-					<div style={{ width: '20px' }}>&nbsp;</div>
-					<div style={xAxisStyle}>{xLabel}</div>
+					</View>
+
+					<Flex
+						flexGrow={0}
+						justifyContent="center"
+						height="single-line-height"
+					>
+						<Text>{xLabel}</Text>
+					</Flex>
 				</Flex>
 			</Flex>
+
+			{/*<Flex direction="column" height={'100%'}>*/}
+			{/*	<Flex direction="row" flexGrow={1}>*/}
+			{/*		<View>{yLabel}</View>*/}
+			{/*		<div style={yAxisStyle}>{yLabel}</div>*/}
+			{/*		<div style={canvasContainerStyle}>*/}
+			{/*			<AutoSizer>*/}
+			{/*				{({ width, height }) => (*/}
+			{/*					<CanvasRenderer*/}
+			{/*						channel={channel}*/}
+			{/*						width={width}*/}
+			{/*						height={height}*/}
+			{/*					/>*/}
+			{/*				)}*/}
+			{/*			</AutoSizer>*/}
+			{/*		</div>*/}
+			{/*	</Flex>*/}
+			{/*	<Flex direction="row" flexGrow={0}>*/}
+			{/*		<div style={{ width: '20px' }}>&nbsp;</div>*/}
+			{/*		<div style={xAxisStyle}>{xLabel}</div>*/}
+			{/*	</Flex>*/}
+			{/*</Flex>*/}
 		</View>
 	);
 }
