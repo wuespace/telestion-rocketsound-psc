@@ -1,7 +1,6 @@
 import { Flex, View, Text } from '@adobe/react-spectrum';
 import AutoSizer from 'react-virtualized-auto-sizer';
 
-import { useDarkColorScheme } from '../hooks';
 import { ChannelAddress } from '@wuespace/telestion-client-types';
 import { CanvasRenderer } from './canvas-renderer';
 
@@ -23,8 +22,6 @@ export interface SpectrogramProps {
  * A basic spectrogram component for displaying spectrum information in relation to time
  */
 export function Spectrogram({ xLabel, yLabel, channel }: SpectrogramProps) {
-	const isDark = useDarkColorScheme();
-
 	return (
 		<View padding="size-10" height="100%">
 			<Flex flexGrow={0} direction="row" height="100%">
