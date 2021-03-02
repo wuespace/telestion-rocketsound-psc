@@ -2,9 +2,12 @@ import { UserConfig } from '@wuespace/telestion-client-types';
 
 import {
 	accLineGraph,
+	altitudeGraph,
 	detailsGraph,
 	gyroLineGraph,
-	magLineGraph
+	magLineGraph,
+	pressureGraph,
+	temperatureGraph
 } from './sample-graph-definitions';
 import { Amplitude } from './channels';
 import { WaveformWidgetProps } from '../widgets/waveform-widget';
@@ -122,11 +125,32 @@ export const userConfig: UserConfig = {
 					},
 					{
 						widgetName: 'graphWidget',
-						width: 6,
+						width: 2,
 						height: 4,
-						title: 'Details',
-						initialProps: detailsGraph
+						title: 'Altitude',
+						initialProps: altitudeGraph
 					},
+					{
+						widgetName: 'graphWidget',
+						width: 2,
+						height: 4,
+						title: 'Pressure',
+						initialProps: pressureGraph
+					},
+					{
+						widgetName: 'graphWidget',
+						width: 2,
+						height: 4,
+						title: 'Temperature',
+						initialProps: temperatureGraph
+					},
+					// {
+					// 	widgetName: 'graphWidget',
+					// 	width: 6,
+					// 	height: 4,
+					// 	title: 'Details',
+					// 	initialProps: detailsGraph
+					// },
 					{
 						widgetName: 'stateWidget',
 						width: 2,

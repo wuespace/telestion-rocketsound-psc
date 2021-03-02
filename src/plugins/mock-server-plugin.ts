@@ -1,9 +1,16 @@
 import http from 'http';
 import sockjs from 'sockjs';
-import { Amplitude, FlightState, NineDOF, Spectrum } from '../model/channels';
+import {
+	Amplitude,
+	BaroData,
+	DataMessage,
+	FlightState,
+	Spectrum
+} from '../model/channels';
 import { SpectrumMessage } from '../model/messages/spectrum';
 
 import { AmplitudeMessage, FlightStateMessage } from '../model/messages';
+import { BaroDataData } from '../model/messages/baro-data';
 
 export function onReady() {
 	if (
@@ -110,6 +117,29 @@ export function onReady() {
 
 				connection.write(bare2); // stringify entire message!
 				console.log('<---   Message sent     -', bare2);
+
+				const baroDataState: DataMessage<BaroDataData> = {
+					result: [
+						{
+							alt: { altitude: 5 },
+							press: { pressure: 3 },
+							temp: { temperature: 100 }
+						}
+					],
+					className: 'a',
+					dataType: 'a'
+				};
+
+				const message4 = {
+					type: 'rec',
+					address: BaroData,
+					body: baroDataState
+				};
+
+				const bare4 = JSON.stringify(message4);
+
+				connection.write(bare4); // stringify entire message!
+				console.log('<---   Message sent     -', bare4);
 
 				const spectrumMessage: SpectrumMessage = {
 					dataType: 'abc',

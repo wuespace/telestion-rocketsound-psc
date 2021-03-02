@@ -1,5 +1,5 @@
 import { GraphWidgetProps } from '../widgets/graph-widget';
-import { NineDOF } from './channels';
+import { BaroData, NineDOF } from './channels';
 
 export const accLineGraph: GraphWidgetProps = {
 	isArea: false,
@@ -85,6 +85,66 @@ export const magLineGraph: GraphWidgetProps = {
 					key: 'result[0].mag.z',
 					title: 'Magnetometer Z',
 					color: 'blue-500'
+				}
+			]
+		}
+	]
+};
+
+export const altitudeGraph: GraphWidgetProps = {
+	isArea: false,
+	isCartesianGrid: true,
+	isHoldOnHover: true,
+	isTooltip: true,
+	maxDataSamples: 60,
+	connections: [
+		{
+			channel: BaroData,
+			descriptors: [
+				{
+					key: 'result[0].alt.altitude',
+					title: 'Altitude',
+					color: 'purple-500'
+				}
+			]
+		}
+	]
+};
+
+export const pressureGraph: GraphWidgetProps = {
+	isArea: false,
+	isCartesianGrid: true,
+	isHoldOnHover: true,
+	isTooltip: true,
+	maxDataSamples: 60,
+	connections: [
+		{
+			channel: BaroData,
+			descriptors: [
+				{
+					key: 'result[0].press.pressure',
+					title: 'Pressure',
+					color: 'seafoam-500'
+				}
+			]
+		}
+	]
+};
+
+export const temperatureGraph: GraphWidgetProps = {
+	isArea: false,
+	isCartesianGrid: true,
+	isHoldOnHover: true,
+	isTooltip: true,
+	maxDataSamples: 60,
+	connections: [
+		{
+			channel: BaroData,
+			descriptors: [
+				{
+					key: 'result[0].temp.temperature',
+					title: 'Temperature',
+					color: 'celery-500'
 				}
 			]
 		}
