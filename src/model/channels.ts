@@ -23,6 +23,8 @@ export const GpsData =
 	MONGODB_NEW + '/de.jvpichowski.rocketsound.messages.base.GpsData';
 export const Amplitude =
 	MONGODB_NEW + '/de.jvpichowski.rocketsound.messages.sound.Amplitude';
+export const Spectrum =
+	MONGODB_NEW + '/de.jvpichowski.rocketsound.messages.sound.Spectrum';
 
 export interface DataMessage<T extends JsonSerializable> {
 	[key: string]: JsonSerializable;

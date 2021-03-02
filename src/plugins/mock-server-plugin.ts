@@ -1,7 +1,8 @@
 import http from 'http';
 import sockjs from 'sockjs';
+import { Amplitude, FlightState, NineDOF, Spectrum } from '../model/channels';
+import { SpectrumMessage } from '../model/messages/spectrum';
 
-import { Amplitude, FlightState } from '../model/channels';
 import { AmplitudeMessage, FlightStateMessage } from '../model/messages';
 
 export function onReady() {
@@ -109,7 +110,27 @@ export function onReady() {
 
 				connection.write(bare2); // stringify entire message!
 				console.log('<---   Message sent     -', bare2);
-			}, 400); // sends message every 2 seconds
+
+				const spectrumMessage: SpectrumMessage = {
+					dataType: 'abc',
+					className: 'abc',
+					result: [
+						{
+							min: 0.1,
+							max: 1,
+							data: new Array(40).fill(0).map(() => Math.random())
+						}
+					]
+				};
+
+				const message3 = {
+					type: 'rec',
+					address: Spectrum,
+					body: spectrumMessage
+				};
+				connection.write(JSON.stringify(message3)); // stringify entire message!
+				console.log('<---   Message sent     -', JSON.stringify(message3));
+			}, 400); // sends message every 0.4 seconds
 
 			connection.on('data', message => {
 				console.log('--->   Message received -', message);

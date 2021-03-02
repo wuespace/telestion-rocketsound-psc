@@ -55,26 +55,26 @@ export const userConfigOld: UserConfig = {
 					},
 					{
 						widgetName: 'graphWidget',
-						width: 12,
+						width: 6,
 						height: 4,
 						title: 'Details',
 						initialProps: detailsGraph
 					},
 					{
 						widgetName: 'stateWidget',
-						width: 3,
+						width: 2,
 						height: 4,
 						title: 'stateWidget'
 					},
 					{
 						widgetName: 'mapwidget',
-						width: 3,
-						height: 4,
+						width: 4,
+						height: 8,
 						title: 'GPS Data'
 					},
 					{
 						widgetName: 'waveformWidget',
-						width: 6,
+						width: 4,
 						height: 4,
 						title: 'Amplitude Waveform',
 						initialProps: waveformProps
@@ -145,6 +145,12 @@ export const userConfig: UserConfig = {
 						height: 4,
 						title: 'Amplitude Waveform',
 						initialProps: waveformProps
+					},
+					{
+						widgetName: 'spectrogramWidget',
+						width: 4,
+						height: 4,
+						title: 'Spectrogram Widget'
 					}
 				]
 			}
