@@ -41,7 +41,7 @@ export function Widget({ title }: BaseRendererProps) {
 		<View marginX={'size-200'}>
 			<Heading level={3}>{title}</Heading>
 			<LoadingIndicator dependencies={[latestData]}>
-				{() => <Table columns={columns} items={items} />}
+				{() => <Table columns={columns} items={items} ariaLabel={title} />}
 			</LoadingIndicator>
 		</View>
 	);
