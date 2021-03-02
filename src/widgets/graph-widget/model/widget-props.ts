@@ -18,6 +18,11 @@ export interface WidgetProps extends GenericProps {
 	isHoldOnHover: boolean;
 
 	/**
+	 * When `true` it displays a tooltip above the chart.
+	 */
+	isTooltip: boolean;
+
+	/**
 	 * The number of data samples to display before removing the old ones.
 	 */
 	maxDataSamples: number;

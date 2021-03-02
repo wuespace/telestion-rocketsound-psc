@@ -23,6 +23,7 @@ export interface GraphOptions {
 	isArea: boolean;
 	isCartesianGrid: boolean;
 	isHoldOnHover: boolean;
+	isTooltip: boolean;
 }
 
 export interface GraphProps {
@@ -32,7 +33,7 @@ export interface GraphProps {
 }
 
 export function Graph({ data, descriptors, options }: GraphProps) {
-	const { isArea, isCartesianGrid, isHoldOnHover } = options;
+	const { isArea, isCartesianGrid, isHoldOnHover, isTooltip } = options;
 	const [background, grid, axis] = useSpectrumColor([
 		'gray-100',
 		'gray-400',
@@ -86,7 +87,7 @@ export function Graph({ data, descriptors, options }: GraphProps) {
 				/>
 				<YAxis stroke={axis} />
 				{/*// @ts-ignore*/}
-				<Tooltip content={<CustomTooltip />} />
+				{isTooltip && <Tooltip content={<CustomTooltip />} />}
 				<Legend />
 
 				{descriptors.map((descriptor, index) => (
