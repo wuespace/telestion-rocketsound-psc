@@ -32,6 +32,8 @@ export interface DataSetDescriptor
 	extends Record<string, JsonSerializable | undefined> {
 	/**
 	 * The title of the data set.
+	 *
+	 * When no title is set, the key is used as a fallback.
 	 */
 	title?: string;
 
@@ -39,6 +41,13 @@ export interface DataSetDescriptor
 	 * The key from the received message object which should be displayed.
 	 */
 	key: string;
+
+	/**
+	 * The unit of the data set.
+	 *
+	 * When nothing is set, no unit is rendered.
+	 */
+	unit?: string;
 
 	/**
 	 * The color of the data set.

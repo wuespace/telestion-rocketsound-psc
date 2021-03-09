@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import {
 	ResponsiveContainer,
 	Line,
@@ -11,41 +12,74 @@ import {
 	Area
 } from 'recharts';
 
-import { DataSample, DataSetDescriptor } from '../model';
-import { roundTo } from '../../lib';
 import { useHoldState, useSpectrumColor } from '../../hooks';
-
+import {
+	chartSpectrumColors,
+	GraphProps,
+	legendFormatter,
+	xTickFormatter,
+	yTickFormatter
+} from './graph.model';
 import { CustomTooltip } from './custom-tooltip';
 
-const xTickFormatter = (value: number) => `${roundTo(value, 2)}`;
-
-export interface GraphOptions {
-	isArea: boolean;
-	isCartesianGrid: boolean;
-	isHoldOnHover: boolean;
-	isTooltip: boolean;
-}
-
-export interface GraphProps {
-	data: DataSample[];
-	descriptors: DataSetDescriptor[];
-	options: GraphOptions;
-}
-
-export function Graph({ data, descriptors, options }: GraphProps) {
-	const { isArea, isCartesianGrid, isHoldOnHover, isTooltip } = options;
-	const [background, grid, axis] = useSpectrumColor([
-		'gray-100',
-		'gray-400',
-		'gray-800'
-	]);
+export function Graph({
+	data,
+	descriptors,
+	options: { domain, isArea, isCartesianGrid, isHoldOnHover, isTooltip, scale }
+}: GraphProps) {
+	const [background, grid, axis] = useSpectrumColor(chartSpectrumColors);
 	const colors = useSpectrumColor(
 		descriptors.map(descriptor => descriptor.color)
 	);
 	const [displayed, hold, unHold] = useHoldState(data);
 
-	const Chart = isArea ? AreaChart : LineChart;
-	const DataRenderer = isArea ? Area : Line;
+	const Chart = useMemo(() => (isArea ? AreaChart : LineChart), [isArea]);
+	const DataRenderer = useMemo(() => (isArea ? Area : Line), [isArea]);
+
+	const dataRenderers = useMemo(
+		() =>
+			descriptors.map(
+				(
+					{ interpolation, isDashed, isDotted, key, strokeWidth, title, unit },
+					index
+				) => (
+					// @ts-ignore
+					<DataRenderer
+						key={key}
+						type={interpolation || 'monotone'}
+						dataKey={key}
+						name={title}
+						unit={unit}
+						stroke={colors[index]}
+						strokeWidth={strokeWidth || 1}
+						dot={isDotted || false}
+						strokeDasharray={isDashed || false ? '4 8' : undefined}
+						isAnimationActive={false}
+						fillOpacity={1}
+						fill={isArea ? `url(#${index})` : undefined}
+					/>
+				)
+			),
+		[DataRenderer, colors, descriptors, isArea]
+	);
+
+	const gradients = useMemo(
+		() =>
+			descriptors.map((descriptor, index) => (
+				<linearGradient
+					key={descriptor.key}
+					id={`${index}`}
+					x1={0}
+					y1={0}
+					x2={0}
+					y2={1}
+				>
+					<stop offset="5%" stopColor={colors[index]} stopOpacity={0.8} />
+					<stop offset="95%" stopColor={background} stopOpacity={0} />
+				</linearGradient>
+			)),
+		[background, colors, descriptors]
+	);
 
 	// Important note!
 	// The chart is no longer working if the components are moved
@@ -59,23 +93,7 @@ export function Graph({ data, descriptors, options }: GraphProps) {
 				onMouseMove={hold}
 				onMouseLeave={unHold}
 			>
-				{isArea && (
-					<defs>
-						{descriptors.map((descriptor, index) => (
-							<linearGradient
-								key={descriptor.key}
-								id={`${index}`}
-								x1={0}
-								y1={0}
-								x2={0}
-								y2={1}
-							>
-								<stop offset="5%" stopColor={colors[index]} stopOpacity={0.8} />
-								<stop offset="95%" stopColor={background} stopOpacity={0} />
-							</linearGradient>
-						))}
-					</defs>
-				)}
+				{isArea && <defs>{gradients}</defs>}
 				{isCartesianGrid && (
 					<CartesianGrid strokeDasharray="4 8" strokeWidth={1} stroke={grid} />
 				)}
@@ -85,27 +103,18 @@ export function Graph({ data, descriptors, options }: GraphProps) {
 					tickFormatter={xTickFormatter}
 					stroke={axis}
 				/>
-				<YAxis stroke={axis} />
+				<YAxis
+					type="number"
+					tickFormatter={yTickFormatter}
+					domain={domain}
+					stroke={axis}
+					scale={scale}
+				/>
 				{/*// @ts-ignore*/}
-				{isTooltip && <Tooltip content={<CustomTooltip />} />}
-				<Legend />
+				{isTooltip && <Tooltip content={CustomTooltip} />}
+				<Legend formatter={legendFormatter} />
 
-				{descriptors.map((descriptor, index) => (
-					// @ts-ignore
-					<DataRenderer
-						key={descriptor.key}
-						type={descriptor.interpolation || 'monotone'}
-						dataKey={descriptor.key}
-						name={descriptor.title}
-						stroke={colors[index]}
-						strokeWidth={descriptor.strokeWidth || 1}
-						dot={descriptor.isDotted || false}
-						strokeDasharray={descriptor.isDashed || false ? '4 8' : undefined}
-						isAnimationActive={false}
-						fillOpacity={1}
-						fill={isArea ? `url(#${index})` : undefined}
-					/>
-				))}
+				{dataRenderers}
 			</Chart>
 		</ResponsiveContainer>
 	);
