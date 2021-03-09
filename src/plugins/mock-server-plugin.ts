@@ -1,5 +1,6 @@
 import http from 'http';
 import sockjs from 'sockjs';
+
 import {
 	Amplitude,
 	BaroData,
@@ -8,9 +9,8 @@ import {
 	Spectrum
 } from '../model/channels';
 import { SpectrumMessage } from '../model/messages/spectrum';
-
 import { AmplitudeMessage, FlightStateMessage } from '../model/messages';
-import { BaroDataData } from '../model/messages/baro-data';
+import { BaroDataClassName, BaroDataData } from '../model/messages/baro-data';
 
 export function onReady() {
 	if (
@@ -25,64 +25,51 @@ export function onReady() {
 		// add messages HERE (will loop around)
 		const messages: AmplitudeMessage[] = [
 			{
-				className: 'abc',
-				dataType: 'abc',
+				className: 'org.telestion.core.database.DbResponse',
+				dataType: 'de.jvpichowski.rocketsound.messages.sound.Amplitude',
 				result: [
 					{
 						amplitude: 3,
-						className: 'hello'
+						freq1: 0,
+						freq2: 1,
+						className: 'de.jvpichowski.rocketsound.messages.sound.Amplitude'
 					}
 				]
 			},
 			{
-				className: 'abc',
-				dataType: 'abc',
+				className: 'org.telestion.core.database.DbResponse',
+				dataType: 'de.jvpichowski.rocketsound.messages.sound.Amplitude',
 				result: [
 					{
 						amplitude: 5,
-						className: 'hello'
+						freq1: 2,
+						freq2: 4,
+						className: 'de.jvpichowski.rocketsound.messages.sound.Amplitude'
 					}
 				]
 			},
 			{
-				className: 'abc',
-				dataType: 'abc',
+				className: 'org.telestion.core.database.DbResponse',
+				dataType: 'de.jvpichowski.rocketsound.messages.sound.Amplitude',
 				result: [
 					{
-						amplitude: 8,
-						className: 'hello'
-					}
-				]
-			},
-			{
-				className: 'abc',
-				dataType: 'abc',
-				result: [
-					{
-						amplitude: 10,
-						className: 'hello'
-					}
-				]
-			},
-			{
-				className: 'abc',
-				dataType: 'abc',
-				result: [
-					{
-						amplitude: 4,
-						className: 'hello'
+						amplitude: 7,
+						freq1: 2,
+						freq2: 0,
+						className: 'de.jvpichowski.rocketsound.messages.sound.Amplitude'
 					}
 				]
 			}
 		];
 
 		const flightState: FlightStateMessage = {
-			dataType: 'abc',
-			className: 'abc',
+			className: 'org.telestion.core.database.DbResponse',
+			dataType: 'de.jvpichowski.rocketsound.messages.base.FlightState',
 			result: [
 				{
 					state: 2,
-					name: 'Help me'
+					name: 'Preflight',
+					className: 'de.jvpichowski.rocketsound.messages.base.FlightState'
 				}
 			]
 		};
@@ -118,16 +105,27 @@ export function onReady() {
 				connection.write(bare2); // stringify entire message!
 				console.log('<---   Message sent     -', bare2);
 
-				const baroDataState: DataMessage<BaroDataData> = {
+				const baroDataState: DataMessage<BaroDataData, BaroDataClassName> = {
+					className: 'org.telestion.core.database.DbResponse',
+					dataType: 'de.jvpichowski.rocketsound.messages.base.BaroData',
 					result: [
 						{
-							alt: { altitude: 5 },
-							press: { pressure: 3 },
-							temp: { temperature: 100 }
+							alt: {
+								altitude: 5,
+								className: 'de.jvpichowski.rocketsound.messages.base.Altitude'
+							},
+							press: {
+								pressure: 3,
+								className: 'de.jvpichowski.rocketsound.messages.base.Pressure'
+							},
+							temp: {
+								temperature: 100,
+								className:
+									'de.jvpichowski.rocketsound.messages.base.Temperature'
+							},
+							className: 'de.jvpichowski.rocketsound.messages.base.BaroData'
 						}
-					],
-					className: 'a',
-					dataType: 'a'
+					]
 				};
 
 				const message4 = {
@@ -142,13 +140,14 @@ export function onReady() {
 				console.log('<---   Message sent     -', bare4);
 
 				const spectrumMessage: SpectrumMessage = {
-					dataType: 'abc',
-					className: 'abc',
+					className: 'org.telestion.core.database.DbResponse',
+					dataType: 'de.jvpichowski.rocketsound.messages.sound.Spectrum',
 					result: [
 						{
 							min: 0.1,
 							max: 1,
-							data: new Array(40).fill(0).map(() => Math.random())
+							data: new Array(40).fill(0).map(() => Math.random()),
+							className: 'de.jvpichowski.rocketsound.messages.sound.Spectrum'
 						}
 					]
 				};
