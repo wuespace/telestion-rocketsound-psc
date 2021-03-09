@@ -32,13 +32,13 @@ const states: { [key: number]: State } = {
 		isSpecial: true
 	},
 	4: {
-		currentState: 'Falling',
+		currentState: 'Landing',
 		nextState: 'Landed',
 		tagName: 'Flight',
 		isSpecial: true
 	},
 	5: {
-		currentState: 'Landed',
+		currentState: 'Recovery',
 		nextState: '-',
 		tagName: 'Afterflight',
 		isSpecial: false
