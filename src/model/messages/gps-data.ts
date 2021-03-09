@@ -4,9 +4,9 @@ import { DataMessage } from '../channels';
 interface GpsDataData {
 	[key: string]: JsonSerializable;
 	satCount: number;
-	fix: number;
-	north: number;
-	east: number;
+	fix: boolean;
+	latitude: number;
+	longitude: number;
 	time: number;
 	className: string;
 }
