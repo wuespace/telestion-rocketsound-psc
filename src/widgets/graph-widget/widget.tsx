@@ -8,12 +8,14 @@ import { Graph } from './components/graph';
 
 export function Widget({
 	title,
-	isArea,
-	isCartesianGrid,
-	isHoldOnHover,
-	isTooltip,
+	connections,
 	maxDataSamples,
-	connections
+	isArea = false,
+	isCartesianGrid = false,
+	isHoldOnHover = true,
+	isTooltip = true,
+	domain = ['auto', 'auto'],
+	scale = 'auto'
 }: BaseRendererProps<WidgetProps>) {
 	const data = useData(connections, maxDataSamples);
 	const descriptors = useMemo(
@@ -23,6 +25,17 @@ export function Widget({
 				[] as DataSetDescriptor[]
 			),
 		[connections]
+	);
+	const options = useMemo(
+		() => ({
+			isArea,
+			isCartesianGrid,
+			isHoldOnHover,
+			isTooltip,
+			domain,
+			scale
+		}),
+		[domain, isArea, isCartesianGrid, isHoldOnHover, isTooltip, scale]
 	);
 
 	return (
@@ -37,11 +50,7 @@ export function Widget({
 					{title}
 				</Heading>
 				<View flexGrow={1} paddingEnd="size-200" overflow="hidden">
-					<Graph
-						data={data}
-						descriptors={descriptors}
-						options={{ isArea, isCartesianGrid, isHoldOnHover, isTooltip }}
-					/>
+					<Graph data={data} descriptors={descriptors} options={options} />
 				</View>
 				<View flexGrow={0} width="100%" height="size-200" />
 			</Flex>
