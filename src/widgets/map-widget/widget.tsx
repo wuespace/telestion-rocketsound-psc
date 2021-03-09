@@ -65,8 +65,8 @@ export function Widget() {
 				{latestMessage && (
 					<CircleMarker
 						center={[
-							latestMessage?.result[0].north,
-							latestMessage?.result[0].east
+							latestMessage?.result[0].latitude,
+							latestMessage?.result[0].longitude
 						]}
 						radius={10}
 					/>
