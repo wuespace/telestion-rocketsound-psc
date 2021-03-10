@@ -20,7 +20,7 @@ export function Widget({ title }: BaseRendererProps) {
 				<LoadingIndicator dependencies={[latestData]}>
 					{() => (
 						<View width="100%" overflow="auto">
-							{/* Waiting for Loading Indicator improvement:
+							{/* TODO: Waiting for Loading Indicator improvement:
 					  			https://github.com/TelestionTeam/telestion-client/pull/350
 					  		*/}
 							{/*// @ts-ignore*/}
