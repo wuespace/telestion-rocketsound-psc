@@ -13,10 +13,12 @@ import { widget as stateWidget } from './state-widget';
 import { widget as graphWidget } from './graph-widget';
 import { widget as waveformWidget } from './waveform-widget';
 import { widget as spectrogramWidget } from './spectrogram-widget';
+import { widget as gpsDetails } from './gps-details';
 // IMPORT_INSERT_MARK
 
 export const projectWidgets: Widget[] = [
 	// ARRAY_FIRST_ELEMENT_INSERT_MARK
+	gpsDetails,
 	spectrogramWidget,
 	mapWidget,
 	stateWidget,
