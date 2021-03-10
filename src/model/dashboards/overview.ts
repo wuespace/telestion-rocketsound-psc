@@ -27,7 +27,7 @@ export const overviewDashboard: Dashboard = {
 			title: 'Altitude',
 			initialProps: {
 				...altitudeGraph,
-				maxDataSamples: 60,
+				maxDataSamples: 30,
 				isCartesianGrid: true
 			}
 		},
@@ -38,7 +38,7 @@ export const overviewDashboard: Dashboard = {
 			title: 'Pressure',
 			initialProps: {
 				...pressureGraph,
-				maxDataSamples: 60,
+				maxDataSamples: 30,
 				isCartesianGrid: true
 			}
 		},
@@ -49,7 +49,7 @@ export const overviewDashboard: Dashboard = {
 			title: 'Temperature',
 			initialProps: {
 				...temperatureGraph,
-				maxDataSamples: 60,
+				maxDataSamples: 30,
 				isCartesianGrid: true
 			}
 		},
