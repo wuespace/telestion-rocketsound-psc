@@ -102,9 +102,7 @@ export function DetailsTable({ data, isQuiet }: DetailsTableProps) {
 			<tbody className="_spectrum-Table-body_60175">
 				{details.map(detail => (
 					<tr className="_spectrum-Table-row_60175">
-						<td className="_spectrum-Table-cell_60175 _spectrum-Table-cell--divider_60175">
-							{detail.name}
-						</td>
+						<td className="_spectrum-Table-cell_60175">{detail.name}</td>
 						<td
 							className="_spectrum-Table-cell_60175"
 							style={{ textAlign: 'right' }}
