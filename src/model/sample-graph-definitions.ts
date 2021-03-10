@@ -148,11 +148,6 @@ export const amplitudeGraph: GraphWidgetProps = {
 			channel: Amplitude,
 			descriptors: [
 				{
-					key: 'result[0].amplitude',
-					title: 'Amplitude',
-					color: 'gray-900'
-				},
-				{
 					key: 'result[0].freq1',
 					title: 'Frequency 1',
 					color: 'red-500',
@@ -165,11 +160,17 @@ export const amplitudeGraph: GraphWidgetProps = {
 					color: 'blue-500',
 					isDashed: true,
 					strokeWidth: 2
+				},
+				{
+					key: 'result[0].amplitude',
+					title: 'Amplitude',
+					color: 'gray-900'
 				}
 			]
 		}
 	],
 	maxDataSamples: 60,
 	isArea: false,
-	isCartesianGrid: true
+	isCartesianGrid: true,
+	scale: 'log'
 };
