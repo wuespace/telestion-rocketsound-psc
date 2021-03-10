@@ -92,7 +92,7 @@ export const userConfig: UserConfig = {
 					{
 						widgetName: 'graphWidget',
 						width: 4,
-						height: 8,
+						height: 4,
 						title: 'Amplitude',
 						initialProps: amplitudeGraph
 					},
