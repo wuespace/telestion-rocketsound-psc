@@ -1,5 +1,5 @@
-import { Heading } from '@adobe/react-spectrum';
+import { View } from '@adobe/react-spectrum';
 
 export function Widget() {
-	return <Heading level={2}>placeholderWidget widget</Heading>;
+	return <View width="100%" height="100%" backgroundColor="gray-50" />;
 }
