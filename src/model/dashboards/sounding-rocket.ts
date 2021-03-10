@@ -24,14 +24,20 @@ export const soundingRocketDashboard: Dashboard = {
 			}
 		},
 		{
+			widgetName: 'placeholderWidget',
+			width: 2,
+			height: 8,
+			title: 'Placeholder'
+		},
+		{
 			widgetName: 'spectrogramWidget',
-			width: 12,
+			width: 10,
 			height: 4,
 			title: 'Spectrogram Widget'
 		},
 		{
 			widgetName: 'graphWidget',
-			width: 12,
+			width: 10,
 			height: 4,
 			title: 'Velocity',
 			initialProps: {
