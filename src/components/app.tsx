@@ -12,7 +12,7 @@ import {
 	useUserConfig
 } from '@wuespace/telestion-client-common';
 
-import { userConfig } from '../model/sample-user-config';
+import { userConfig } from '../model/user-config';
 import { projectWidgets } from '../widgets';
 
 import { Header } from './header';

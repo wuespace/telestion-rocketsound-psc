@@ -1,5 +1,5 @@
-import { GraphWidgetProps } from '../widgets/graph-widget';
-import { Amplitude, BaroData, NineDOF } from './channels';
+import { GraphWidgetProps } from '../../../widgets/graph-widget';
+import { Amplitude, BaroData, NineDOF, Velocity } from '../../channels';
 
 export const accLineGraph: GraphWidgetProps = {
 	connections: [
@@ -102,8 +102,7 @@ export const altitudeGraph: GraphWidgetProps = {
 			]
 		}
 	],
-	maxDataSamples: 60,
-	isCartesianGrid: true
+	maxDataSamples: 20
 };
 
 export const pressureGraph: GraphWidgetProps = {
@@ -120,8 +119,7 @@ export const pressureGraph: GraphWidgetProps = {
 			]
 		}
 	],
-	maxDataSamples: 60,
-	isCartesianGrid: true
+	maxDataSamples: 20
 };
 
 export const temperatureGraph: GraphWidgetProps = {
@@ -138,8 +136,7 @@ export const temperatureGraph: GraphWidgetProps = {
 			]
 		}
 	],
-	maxDataSamples: 60,
-	isCartesianGrid: true
+	maxDataSamples: 20
 };
 
 export const amplitudeGraph: GraphWidgetProps = {
@@ -169,8 +166,31 @@ export const amplitudeGraph: GraphWidgetProps = {
 			]
 		}
 	],
-	maxDataSamples: 60,
-	isArea: false,
-	isCartesianGrid: true,
+	maxDataSamples: 20,
 	scale: 'log'
+};
+
+export const velocityGraph: GraphWidgetProps = {
+	connections: [
+		{
+			channel: Velocity,
+			descriptors: [
+				{
+					key: 'result[0].estimated',
+					title: 'Estimated',
+					unit: 'm/s',
+					color: 'indigo-500',
+					isDashed: true,
+					strokeWidth: 2
+				},
+				{
+					key: 'result[0].measured',
+					title: 'Measured',
+					unit: 'm/s',
+					color: 'orange-500'
+				}
+			]
+		}
+	],
+	maxDataSamples: 20
 };
