@@ -7,35 +7,9 @@ import { NineDofMessage } from '../../model/messages';
 import { NineDOF } from '../../model/channels';
 
 import { Table } from './table';
-import { Column, Item } from './model';
-
-const columns: Column[] = [
-	{ name: 'Sensor', key: 'sensor' },
-	{ name: <code>x</code>, key: 'x' },
-	{ name: <code>y</code>, key: 'y' },
-	{ name: <code>z</code>, key: 'z' }
-];
 
 export function Widget({ title }: BaseRendererProps) {
 	const latestData = useChannelLatest<NineDofMessage>(NineDOF)?.result[0];
-
-	const items: Item[] = [
-		{
-			sensor: 'Accelerometer',
-			key: `acc-${latestData ? Object.values(latestData?.acc) : ''}`,
-			...latestData?.acc
-		},
-		{
-			sensor: 'Gyroscope',
-			key: `gyro-${latestData ? Object.values(latestData?.gyro) : ''}`,
-			...latestData?.gyro
-		},
-		{
-			sensor: 'Magnetometer',
-			key: `mag-${latestData ? Object.values(latestData?.mag) : ''}`,
-			...latestData?.mag
-		}
-	];
 
 	return (
 		<View width="100%" height="100%" padding="size-200">
@@ -44,7 +18,15 @@ export function Widget({ title }: BaseRendererProps) {
 					{title}
 				</Heading>
 				<LoadingIndicator dependencies={[latestData]}>
-					{() => <Table columns={columns} items={items} ariaLabel={title} />}
+					{() => (
+						<View width="100%" overflow="auto">
+							{/* Waiting for Loading Indicator improvement:
+					  			https://github.com/TelestionTeam/telestion-client/pull/350
+					  		*/}
+							{/*// @ts-ignore*/}
+							<Table data={latestData} isQuiet={false} />
+						</View>
+					)}
 				</LoadingIndicator>
 			</Flex>
 		</View>
