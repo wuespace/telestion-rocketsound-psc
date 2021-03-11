@@ -10,7 +10,7 @@ import { DetailsTable } from './details-table';
 export function Widget({ title }: BaseRendererProps) {
 	const latestData = useChannelLatest<GpsDataMessage>(GpsData)?.result[0];
 
-	const isConnected = latestData && latestData.fix;
+	const isFixEstablished = latestData && latestData.fix;
 
 	return (
 		<View width="100%" height="100%" padding="size-200">
@@ -26,9 +26,10 @@ export function Widget({ title }: BaseRendererProps) {
 					</Heading>
 					<StatusLight
 						marginTop={-1}
-						variant={isConnected ? 'positive' : 'negative'}
+						variant={isFixEstablished ? 'positive' : 'negative'}
+						isHidden={!latestData}
 					>
-						{isConnected ? 'Connected' : 'Disconnected'}
+						{isFixEstablished ? 'Fix established' : 'Fix pending'}
 					</StatusLight>
 				</Flex>
 				<LoadingIndicator dependencies={[latestData]}>
