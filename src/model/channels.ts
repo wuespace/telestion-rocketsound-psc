@@ -27,10 +27,12 @@ export const Spectrum =
 	MONGODB_NEW + '/de.jvpichowski.rocketsound.messages.sound.Spectrum';
 export const BaroData =
 	MONGODB_NEW + '/de.jvpichowski.rocketsound.messages.base.BaroData';
+export const Velocity =
+	MONGODB_NEW + '/de.jvpichowski.rocketsound.messages.base.Velocity';
 
-export interface DataMessage<T extends JsonSerializable> {
-	[key: string]: JsonSerializable;
-	dataType: string;
+export interface DataMessage<T extends JsonSerializable, C extends string>
+	extends Record<string, JsonSerializable> {
+	dataType: C;
 	result: T[];
-	className: string;
+	className: 'org.telestion.core.database.DbResponse';
 }

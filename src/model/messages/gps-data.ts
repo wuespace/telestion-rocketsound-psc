@@ -1,14 +1,15 @@
 import { JsonSerializable } from '@wuespace/telestion-client-types';
 import { DataMessage } from '../channels';
 
-interface GpsDataData {
-	[key: string]: JsonSerializable;
+export type GpsDataClassName = 'de.jvpichowski.rocketsound.messages.base.GpsData';
+
+export interface GpsDataData extends Record<string, JsonSerializable> {
 	satCount: number;
-	fix: number;
-	north: number;
-	east: number;
+	fix: boolean;
+	latitude: number;
+	longitude: number;
 	time: number;
-	className: string;
+	className: GpsDataClassName;
 }
 
-export type GpsDataMessage = DataMessage<GpsDataData>;
+export type GpsDataMessage = DataMessage<GpsDataData, GpsDataClassName>;
