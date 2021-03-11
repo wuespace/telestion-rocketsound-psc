@@ -43,8 +43,8 @@ export function Widget() {
 				<ActionButton
 					onPress={() =>
 						map?.panTo([
-							latestMessage?.result[0].north ?? 49.705638,
-							latestMessage?.result[0].east ?? 9.890828
+							latestMessage?.result[0].latitude ?? mapCenter.lat,
+							latestMessage?.result[0].longitude ?? mapCenter.lng
 						])
 					}
 				>
