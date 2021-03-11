@@ -1,4 +1,4 @@
-import { Flex, Heading, View } from '@adobe/react-spectrum';
+import { Flex, Heading, View, StatusLight } from '@adobe/react-spectrum';
 import { BaseRendererProps } from '@wuespace/telestion-client-types';
 import { useChannelLatest } from '@wuespace/telestion-client-core';
 import { LoadingIndicator } from '@wuespace/telestion-client-common';
@@ -10,12 +10,27 @@ import { DetailsTable } from './details-table';
 export function Widget({ title }: BaseRendererProps) {
 	const latestData = useChannelLatest<GpsDataMessage>(GpsData)?.result[0];
 
+	const isConnected = latestData && latestData.fix;
+
 	return (
 		<View width="100%" height="100%" padding="size-200">
 			<Flex direction="column" width="100%" height="100%">
-				<Heading marginTop={0} flexGrow={0} level={3}>
-					{title}
-				</Heading>
+				<Flex
+					flexGrow={0}
+					direction="row"
+					justifyContent="space-between"
+					alignItems="start"
+				>
+					<Heading marginTop={0} flexGrow={0} level={3}>
+						{title}
+					</Heading>
+					<StatusLight
+						marginTop={-1}
+						variant={isConnected ? 'positive' : 'negative'}
+					>
+						{isConnected ? 'Connected' : 'Disconnected'}
+					</StatusLight>
+				</Flex>
 				<LoadingIndicator dependencies={[latestData]}>
 					{() => (
 						<View width="100%" overflow="auto">

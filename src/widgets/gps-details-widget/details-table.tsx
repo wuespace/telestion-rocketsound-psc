@@ -35,7 +35,6 @@ interface Detail {
 }
 
 function buildDetails({
-	fix,
 	latitude,
 	longitude,
 	satCount,
@@ -47,10 +46,6 @@ function buildDetails({
 		{
 			name: 'Satellite count',
 			value: satCount
-		},
-		{
-			name: 'Fixed',
-			value: <code>{fix ? 'true' : 'false'}</code>
 		},
 		{
 			name: 'Latitude',
