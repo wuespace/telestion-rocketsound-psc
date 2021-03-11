@@ -1,82 +1,82 @@
 {
-	"name": "telestion-rocketsound-psc",
-	"description": "telestion-rocketsound-psc, a Telestion PSC generated using the telestion-client-cli",
-	"version": "0.2.0",
-	"homepage": ".",
-	"scripts": {
-		"start": "npm run start:electron",
-		"start:electron": "tc-cli start --electron",
-		"start:browser": "tc-cli start --browser",
-		"build": "tc-cli build",
-		"stats": "tc-cli stats",
-		"style": "prettier --write package.json '**/*{.ts,.tsx,.js,.jsx,.json,.html,.css,.scss,.sass,.yaml,.yml,.md}'",
-		"lint": "eslint --ext .js,.jsx,.ts,.tsx --ignore-pattern node_modules/ --no-error-on-unmatched-pattern src",
-		"ts": "tsc",
-		"clean": "rimraf build dist"
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "pretty-quick --staged"
-		}
-	},
-	"private": true,
-	"eslintConfig": {
-		"extends": [
-			"react-app",
-			"react-app/jest"
-		]
-	},
-	"dependencies": {
-		"@adobe/react-spectrum": "^3.8.0",
-		"@react-spectrum/table": "^3.0.0-alpha.9",
-		"@react-spectrum/tabs": "^3.0.0-alpha.4",
-		"@spectrum-icons/illustrations": "^3.2.1",
-		"@spectrum-icons/ui": "^3.2.0",
-		"@spectrum-icons/workflow": "^3.2.0",
-		"@wuespace/telestion-client-common": "^0.11.2",
-		"@wuespace/telestion-client-core": "^0.11.2",
-		"@wuespace/telestion-client-prop-types": "^0.11.2",
-		"@wuespace/vertx-mock-server": "^0.11.0",
-		"electron": "^12.0.1",
-		"leaflet": "^1.7.1",
-		"react": "^17.0.1",
-		"react-dom": "^17.0.1",
-		"react-leaflet": "^3.1.0",
-		"react-router-dom": "^5.2.0",
-		"react-virtualized-auto-sizer": "^1.0.5",
-		"recharts": "^2.0.8",
-		"zustand": "^3.3.2"
-	},
-	"devDependencies": {
-		"@testing-library/jest-dom": "^5.11.9",
-		"@testing-library/react": "^11.2.5",
-		"@testing-library/user-event": "^12.8.3",
-		"@types/jest": "^26.0.20",
-		"@types/leaflet": "^1.7.0",
-		"@types/node": "^14.14.33",
-		"@types/react": "^17.0.3",
-		"@types/react-dom": "^17.0.2",
-		"@types/react-virtualized-auto-sizer": "^1.0.0",
-		"@types/recharts": "^1.8.19",
-		"@wuespace/telestion-client-cli": "^0.11.2",
-		"@wuespace/telestion-client-types": "^0.11.2",
-		"husky": "^4.3.8",
-		"prettier": "^2.2.1",
-		"pretty-quick": "^3.1.0",
-		"react-scripts": "^4.0.3",
-		"rimraf": "^3.0.2",
-		"typescript": "^4.2.3"
-	},
-	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		]
-	}
+  "name": "telestion-rocketsound-psc",
+  "description": "telestion-rocketsound-psc, a Telestion PSC generated using the telestion-client-cli",
+  "version": "0.3.0",
+  "homepage": ".",
+  "scripts": {
+    "start": "npm run start:electron",
+    "start:electron": "tc-cli start --electron",
+    "start:browser": "tc-cli start --browser",
+    "build": "tc-cli build",
+    "stats": "tc-cli stats",
+    "style": "prettier --write package.json '**/*{.ts,.tsx,.js,.jsx,.json,.html,.css,.scss,.sass,.yaml,.yml,.md}'",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx --ignore-pattern node_modules/ --no-error-on-unmatched-pattern src",
+    "ts": "tsc",
+    "clean": "rimraf build dist"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "private": true,
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "dependencies": {
+    "@adobe/react-spectrum": "^3.8.0",
+    "@react-spectrum/table": "^3.0.0-alpha.9",
+    "@react-spectrum/tabs": "^3.0.0-alpha.4",
+    "@spectrum-icons/illustrations": "^3.2.1",
+    "@spectrum-icons/ui": "^3.2.0",
+    "@spectrum-icons/workflow": "^3.2.0",
+    "@wuespace/telestion-client-common": "^0.11.2",
+    "@wuespace/telestion-client-core": "^0.11.2",
+    "@wuespace/telestion-client-prop-types": "^0.11.2",
+    "@wuespace/vertx-mock-server": "^0.11.0",
+    "electron": "^12.0.1",
+    "leaflet": "^1.7.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-leaflet": "^3.1.0",
+    "react-router-dom": "^5.2.0",
+    "react-virtualized-auto-sizer": "^1.0.5",
+    "recharts": "^2.0.8",
+    "zustand": "^3.3.2"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.8.3",
+    "@types/jest": "^26.0.20",
+    "@types/leaflet": "^1.7.0",
+    "@types/node": "^14.14.33",
+    "@types/react": "^17.0.3",
+    "@types/react-dom": "^17.0.2",
+    "@types/react-virtualized-auto-sizer": "^1.0.0",
+    "@types/recharts": "^1.8.19",
+    "@wuespace/telestion-client-cli": "^0.11.2",
+    "@wuespace/telestion-client-types": "^0.11.2",
+    "husky": "^4.3.8",
+    "prettier": "^2.2.1",
+    "pretty-quick": "^3.1.0",
+    "react-scripts": "^4.0.3",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.2.3"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

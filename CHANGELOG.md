@@ -1,3 +1,32 @@
+# [0.3.0](https://github.com/TelestionTeam/telestion-rocketsound-psc/compare/v0.2.0...v0.3.0) (2021-03-11)
+
+
+### Bug Fixes
+
+* **model:** Fix height of amplitude graph widget ([17f279e](https://github.com/TelestionTeam/telestion-rocketsound-psc/commit/17f279e8da316d7b86845198f359d90f2ffd3000))
+* **plugin:** Update mock server plugin to be conform with new data message format ([0daccce](https://github.com/TelestionTeam/telestion-rocketsound-psc/commit/0daccce8aaae7a43a527958cbdd8c6f0adf6b4a9))
+* **widget:** Fix map widget to be conform with GPS data message type ([96b66ad](https://github.com/TelestionTeam/telestion-rocketsound-psc/commit/96b66adc234d1af00ba8f57f077c7060182a2cb5))
+* **widget:** Rename states in flight state widget ([5856f52](https://github.com/TelestionTeam/telestion-rocketsound-psc/commit/5856f52147a921bc4c6f4287fb539b86f4bc278e))
+
+
+### Features
+
+* **model:** Amplitude graph now scales logarithmic ([9a3e4eb](https://github.com/TelestionTeam/telestion-rocketsound-psc/commit/9a3e4ebd512d7bfc1076e3503258fb1f7820123c))
+* **model:** Re-structure user configuration and add more dashboards based on https://github.com/TelestionTeam/telestion-rocketsound-psc/issues/69 ([1bd0dc2](https://github.com/TelestionTeam/telestion-rocketsound-psc/commit/1bd0dc2af2b3e7c33edf26de578c2fb835ef12b9))
+* **model:** Update user configuration ([be2a79d](https://github.com/TelestionTeam/telestion-rocketsound-psc/commit/be2a79d270592617fb5cee088fb413f6eb159ac2))
+* **widget:** Add connection status light to GPS details widget ([03024fc](https://github.com/TelestionTeam/telestion-rocketsound-psc/commit/03024fce92e38b64b33ae9ab854adeab2775acf3))
+* **widget:** Change status light descriptions and hide status light before first message in GPS details widget ([4cfcaa8](https://github.com/TelestionTeam/telestion-rocketsound-psc/commit/4cfcaa870ba8edc346ce5c3b86637dfa2b86032c))
+* **widget:** Enhance Map widget ([fda5138](https://github.com/TelestionTeam/telestion-rocketsound-psc/commit/fda5138d8b10b9981fbb6ce7234cb5aeb3ac3990))
+* **widget:** Implement GPS details widget ([ce41cc2](https://github.com/TelestionTeam/telestion-rocketsound-psc/commit/ce41cc26bdf2d04d446c88dab67807f10d2db0dc))
+* **widget:** Implement placeholder widget and add it to Sounding Rocket dashboard ([8408ca0](https://github.com/TelestionTeam/telestion-rocketsound-psc/commit/8408ca08a9615e41fecdc4f237d4607d34ba685a))
+* **widget:** Improve graph widget ([7802fd5](https://github.com/TelestionTeam/telestion-rocketsound-psc/commit/7802fd5bfdc6ec06288603153eeadf702487d624))
+* **widget:** Initialize GPS details widget ([9f9cdbf](https://github.com/TelestionTeam/telestion-rocketsound-psc/commit/9f9cdbfb180f1e3d1cc7606344d485226c4cc3da))
+* **widget:** Initialize placeholder widget ([0db5189](https://github.com/TelestionTeam/telestion-rocketsound-psc/commit/0db5189e6f69c249321fdaba7d945efa0a6279c9))
+* **widget:** Re-implement 9-DOF widget to remove some weird errors and behaviours ([940a68a](https://github.com/TelestionTeam/telestion-rocketsound-psc/commit/940a68a06098a024e94427f5751b8c91fb8b351d))
+* **widget:** Remove divider from details map in GPS details widget ([a692566](https://github.com/TelestionTeam/telestion-rocketsound-psc/commit/a69256612f002165acb3dfd25820b5ece6eb466e))
+
+
+
 # [0.2.0](https://github.com/TelestionTeam/telestion-rocketsound-psc/compare/v0.1.0...v0.2.0) (2021-03-02)
 
 
