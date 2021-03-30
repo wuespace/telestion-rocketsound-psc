@@ -4,6 +4,7 @@
 	"version": "0.3.0",
 	"homepage": ".",
 	"scripts": {
+		"prepare": "husky install",
 		"start": "npm run start:electron",
 		"start:electron": "tc-cli start --electron",
 		"start:browser": "tc-cli start --browser",
@@ -14,11 +15,6 @@
 		"lint": "eslint --ext .js,.jsx,.ts,.tsx --ignore-pattern node_modules/ --no-error-on-unmatched-pattern src",
 		"ts": "tsc",
 		"clean": "rimraf build dist"
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "pretty-quick --staged"
-		}
 	},
 	"private": true,
 	"eslintConfig": {
