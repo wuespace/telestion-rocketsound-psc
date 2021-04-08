@@ -17,6 +17,10 @@
 		"clean": "rimraf build dist"
 	},
 	"private": true,
+	"engines": {
+		"node": ">=14",
+		"npm": ">=7"
+	},
 	"eslintConfig": {
 		"extends": [
 			"react-app",
@@ -30,10 +34,10 @@
 		"@spectrum-icons/illustrations": "^3.2.1",
 		"@spectrum-icons/ui": "^3.2.0",
 		"@spectrum-icons/workflow": "^3.2.0",
-		"@wuespace/telestion-client-common": "^0.11.2",
-		"@wuespace/telestion-client-core": "^0.11.2",
-		"@wuespace/telestion-client-prop-types": "^0.11.2",
-		"@wuespace/vertx-mock-server": "^0.11.0",
+		"@wuespace/telestion-client-common": "^0.12.0",
+		"@wuespace/telestion-client-core": "^0.12.0",
+		"@wuespace/telestion-client-prop-types": "^0.12.0",
+		"@wuespace/vertx-mock-server": "^0.12.0",
 		"electron": "^12.0.2",
 		"leaflet": "^1.7.1",
 		"react": "^17.0.2",
@@ -55,8 +59,8 @@
 		"@types/react-dom": "^17.0.3",
 		"@types/react-virtualized-auto-sizer": "^1.0.0",
 		"@types/recharts": "^1.8.19",
-		"@wuespace/telestion-client-cli": "^0.11.2",
-		"@wuespace/telestion-client-types": "^0.11.2",
+		"@wuespace/telestion-client-cli": "^0.12.0",
+		"@wuespace/telestion-client-types": "^0.12.0",
 		"husky": "^6.0.0",
 		"prettier": "^2.2.1",
 		"pretty-quick": "^3.1.0",
