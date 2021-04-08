@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useChannel } from '@wuespace/telestion-client-core';
 import { ChannelAddress } from '@wuespace/telestion-client-types';
-import { SpectrumData, SpectrumMessage } from '../../model/messages/spectrum';
+import { SpectrumData, SpectrumMessage } from '../../model/messages';
 
 function buildNextState(
 	prevState: SpectrumData[],
@@ -22,13 +22,11 @@ export function useSpectrum(
 ): SpectrumData[] {
 	const [spectrum, setSpectrum] = useState<SpectrumData[]>([]);
 	const handler = useCallback(
-		(data: SpectrumMessage | null) => {
-			if (data) {
-				const spectrumData = data.result[0];
-				setSpectrum(prevState =>
-					buildNextState(prevState, spectrumData, samples)
-				);
-			}
+		(data: SpectrumMessage) => {
+			const spectrumData = data.result[0];
+			setSpectrum(prevState =>
+				buildNextState(prevState, spectrumData, samples)
+			);
 		},
 		[samples]
 	);

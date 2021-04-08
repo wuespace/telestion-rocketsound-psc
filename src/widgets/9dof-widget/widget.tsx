@@ -9,7 +9,7 @@ import { NineDOF } from '../../model/channels';
 import { Table } from './table';
 
 export function Widget({ title }: BaseRendererProps) {
-	const latestData = useChannelLatest<NineDofMessage>(NineDOF)?.result[0];
+	const latestData = useChannelLatest<NineDofMessage>(NineDOF);
 
 	return (
 		<View width="100%" height="100%" padding="size-200">
@@ -17,14 +17,11 @@ export function Widget({ title }: BaseRendererProps) {
 				<Heading marginTop={0} flexGrow={0} level={3}>
 					{title}
 				</Heading>
+				{/*// @ts-ignore*/}
 				<LoadingIndicator dependencies={[latestData]}>
-					{() => (
+					{({ result }) => (
 						<View width="100%" overflow="auto">
-							{/* TODO: Waiting for Loading Indicator improvement:
-					  			https://github.com/TelestionTeam/telestion-client/pull/350
-					  		*/}
-							{/*// @ts-ignore*/}
-							<Table data={latestData} isQuiet={false} />
+							<Table data={result[0]} isQuiet={false} />
 						</View>
 					)}
 				</LoadingIndicator>

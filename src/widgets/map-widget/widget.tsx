@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useChannelLatest } from '@wuespace/telestion-client-core';
 import { Flex, Heading, Switch, ActionButton } from '@adobe/react-spectrum';
+
 import { LatLng, LatLngBounds, Map } from 'leaflet';
 import {
 	CircleMarker,
@@ -11,6 +12,7 @@ import {
 } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet/dist/leaflet.js';
+
 import { GpsDataMessage } from '../../model/messages';
 import { GpsData } from '../../model/channels';
 
@@ -83,8 +85,8 @@ export function Widget() {
 				{latestMessage && (
 					<CircleMarker
 						center={[
-							latestMessage?.result[0].latitude,
-							latestMessage?.result[0].longitude
+							latestMessage.result[0].latitude,
+							latestMessage.result[0].longitude
 						]}
 						radius={10}
 					/>

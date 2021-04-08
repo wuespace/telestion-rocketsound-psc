@@ -68,6 +68,17 @@ class RocketSoundMockServer extends MockServer implements OnInit, OnClose {
 					className: 'de.jvpichowski.rocketsound.messages.base.FlightState'
 				}
 			]
+		},
+		{
+			className: 'org.telestion.core.database.DbResponse',
+			dataType: 'de.jvpichowski.rocketsound.messages.base.FlightState',
+			result: [
+				{
+					state: 3,
+					name: 'Apogee',
+					className: 'de.jvpichowski.rocketsound.messages.base.FlightState'
+				}
+			]
 		}
 	];
 	currentFlightState = 0;
@@ -88,6 +99,27 @@ class RocketSoundMockServer extends MockServer implements OnInit, OnClose {
 					},
 					temp: {
 						temperature: 100,
+						className: 'de.jvpichowski.rocketsound.messages.base.Temperature'
+					},
+					className: 'de.jvpichowski.rocketsound.messages.base.BaroData'
+				}
+			]
+		},
+		{
+			className: 'org.telestion.core.database.DbResponse',
+			dataType: 'de.jvpichowski.rocketsound.messages.base.BaroData',
+			result: [
+				{
+					alt: {
+						altitude: 7,
+						className: 'de.jvpichowski.rocketsound.messages.base.Altitude'
+					},
+					press: {
+						pressure: 2,
+						className: 'de.jvpichowski.rocketsound.messages.base.Pressure'
+					},
+					temp: {
+						temperature: 80,
 						className: 'de.jvpichowski.rocketsound.messages.base.Temperature'
 					},
 					className: 'de.jvpichowski.rocketsound.messages.base.BaroData'
@@ -115,11 +147,11 @@ class RocketSoundMockServer extends MockServer implements OnInit, OnClose {
 
 	onInit() {
 		this.intervalId = setInterval(() => {
-			this.currentAmplitude = this.sendMessage(
-				this.currentAmplitude,
-				Amplitude,
-				this.amplitudeData
-			);
+			// this.currentAmplitude = this.sendMessage(
+			// 	this.currentAmplitude,
+			// 	Amplitude,
+			// 	this.amplitudeData
+			// );
 			this.currentFlightState = this.sendMessage(
 				this.currentFlightState,
 				FlightState,
@@ -130,11 +162,11 @@ class RocketSoundMockServer extends MockServer implements OnInit, OnClose {
 				BaroData,
 				this.baroData
 			);
-			this.currentSpectrum = this.sendMessage(
-				this.currentSpectrum,
-				Spectrum,
-				this.spectrumData
-			);
+			// this.currentSpectrum = this.sendMessage(
+			// 	this.currentSpectrum,
+			// 	Spectrum,
+			// 	this.spectrumData
+			// );
 		}, 1000); // send every 1 second new data
 	}
 
