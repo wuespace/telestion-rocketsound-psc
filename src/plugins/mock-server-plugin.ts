@@ -1,68 +1,64 @@
-import http from 'http';
-import sockjs from 'sockjs';
+import chalk from 'chalk';
+import { Logger, ChalkLogger } from '@fliegwerk/logsemts';
+import {
+	ChannelAddress,
+	JsonSerializable
+} from '@wuespace/telestion-client-types';
+import { MockServer, OnClose, OnInit } from '@wuespace/vertx-mock-server';
 
 import {
-	Amplitude,
-	BaroData,
-	DataMessage,
-	FlightState,
-	Spectrum
-} from '../model/channels';
-import { SpectrumMessage } from '../model/messages/spectrum';
-import { AmplitudeMessage, FlightStateMessage } from '../model/messages';
-import { BaroDataClassName, BaroDataData } from '../model/messages/baro-data';
+	AmplitudeMessage,
+	BaroDataMessage,
+	FlightStateMessage,
+	SpectrumMessage
+} from '../model/messages';
+import { Amplitude, BaroData, FlightState, Spectrum } from '../model/channels';
 
-export function onReady() {
-	if (
-		process.env.NODE_ENV !== 'production' &&
-		process.env.MOCK_SERVER === 'true'
-	) {
-		console.log('listening');
+class RocketSoundMockServer extends MockServer implements OnInit, OnClose {
+	intervalId: any;
 
-		// change channel address HERE
-		const address = Amplitude;
+	readonly amplitudeData: Array<AmplitudeMessage> = [
+		{
+			className: 'org.telestion.core.database.DbResponse',
+			dataType: 'de.jvpichowski.rocketsound.messages.sound.Amplitude',
+			result: [
+				{
+					amplitude: 3,
+					freq1: 0,
+					freq2: 1,
+					className: 'de.jvpichowski.rocketsound.messages.sound.Amplitude'
+				}
+			]
+		},
+		{
+			className: 'org.telestion.core.database.DbResponse',
+			dataType: 'de.jvpichowski.rocketsound.messages.sound.Amplitude',
+			result: [
+				{
+					amplitude: 5,
+					freq1: 2,
+					freq2: 4,
+					className: 'de.jvpichowski.rocketsound.messages.sound.Amplitude'
+				}
+			]
+		},
+		{
+			className: 'org.telestion.core.database.DbResponse',
+			dataType: 'de.jvpichowski.rocketsound.messages.sound.Amplitude',
+			result: [
+				{
+					amplitude: 7,
+					freq1: 2,
+					freq2: 0,
+					className: 'de.jvpichowski.rocketsound.messages.sound.Amplitude'
+				}
+			]
+		}
+	];
+	currentAmplitude = 0;
 
-		// add messages HERE (will loop around)
-		const messages: AmplitudeMessage[] = [
-			{
-				className: 'org.telestion.core.database.DbResponse',
-				dataType: 'de.jvpichowski.rocketsound.messages.sound.Amplitude',
-				result: [
-					{
-						amplitude: 3,
-						freq1: 0,
-						freq2: 1,
-						className: 'de.jvpichowski.rocketsound.messages.sound.Amplitude'
-					}
-				]
-			},
-			{
-				className: 'org.telestion.core.database.DbResponse',
-				dataType: 'de.jvpichowski.rocketsound.messages.sound.Amplitude',
-				result: [
-					{
-						amplitude: 5,
-						freq1: 2,
-						freq2: 4,
-						className: 'de.jvpichowski.rocketsound.messages.sound.Amplitude'
-					}
-				]
-			},
-			{
-				className: 'org.telestion.core.database.DbResponse',
-				dataType: 'de.jvpichowski.rocketsound.messages.sound.Amplitude',
-				result: [
-					{
-						amplitude: 7,
-						freq1: 2,
-						freq2: 0,
-						className: 'de.jvpichowski.rocketsound.messages.sound.Amplitude'
-					}
-				]
-			}
-		];
-
-		const flightState: FlightStateMessage = {
+	readonly flightStates: Array<FlightStateMessage> = [
+		{
 			className: 'org.telestion.core.database.DbResponse',
 			dataType: 'de.jvpichowski.rocketsound.messages.base.FlightState',
 			result: [
@@ -72,110 +68,107 @@ export function onReady() {
 					className: 'de.jvpichowski.rocketsound.messages.base.FlightState'
 				}
 			]
-		};
+		}
+	];
+	currentFlightState = 0;
 
-		// implementation
-		const eventBus = sockjs.createServer();
-		eventBus.on('connection', connection => {
-			// per connection scope
-			let pos = 0;
-			const id = setInterval(() => {
-				const message = {
-					type: 'rec', // receive on the frontend side
-					address,
-					body: messages[pos]
-				};
+	readonly baroData: Array<BaroDataMessage> = [
+		{
+			className: 'org.telestion.core.database.DbResponse',
+			dataType: 'de.jvpichowski.rocketsound.messages.base.BaroData',
+			result: [
+				{
+					alt: {
+						altitude: 5,
+						className: 'de.jvpichowski.rocketsound.messages.base.Altitude'
+					},
+					press: {
+						pressure: 3,
+						className: 'de.jvpichowski.rocketsound.messages.base.Pressure'
+					},
+					temp: {
+						temperature: 100,
+						className: 'de.jvpichowski.rocketsound.messages.base.Temperature'
+					},
+					className: 'de.jvpichowski.rocketsound.messages.base.BaroData'
+				}
+			]
+		}
+	];
+	currentBaroData = 0;
 
-				// next message + loop around on end of array
-				pos = (pos + 1) % messages.length;
+	readonly spectrumData: Array<SpectrumMessage> = [
+		{
+			className: 'org.telestion.core.database.DbResponse',
+			dataType: 'de.jvpichowski.rocketsound.messages.sound.Spectrum',
+			result: [
+				{
+					min: 0.1,
+					max: 1,
+					data: new Array(40).fill(0).map(() => Math.random()),
+					className: 'de.jvpichowski.rocketsound.messages.sound.Spectrum'
+				}
+			]
+		}
+	];
+	currentSpectrum = 0;
 
-				const bare = JSON.stringify(message);
+	onInit() {
+		this.intervalId = setInterval(() => {
+			this.currentAmplitude = this.sendMessage(
+				this.currentAmplitude,
+				Amplitude,
+				this.amplitudeData
+			);
+			this.currentFlightState = this.sendMessage(
+				this.currentFlightState,
+				FlightState,
+				this.flightStates
+			);
+			this.currentBaroData = this.sendMessage(
+				this.currentBaroData,
+				BaroData,
+				this.baroData
+			);
+			this.currentSpectrum = this.sendMessage(
+				this.currentSpectrum,
+				Spectrum,
+				this.spectrumData
+			);
+		}, 1000); // send every 1 second new data
+	}
 
-				connection.write(bare); // stringify entire message!
-				console.log('<---   Message sent     -', bare);
+	onClose() {
+		clearInterval(this.intervalId);
+	}
 
-				const message2 = {
-					type: 'rec',
-					address: FlightState,
-					body: flightState
-				};
+	private sendMessage(
+		current: number,
+		channel: ChannelAddress,
+		data: Array<JsonSerializable>
+	): number {
+		if (data.length === 0) throw new Error('Data is empty');
+		if (current + 1 >= data.length) current = 0;
+		else current += 1;
 
-				const bare2 = JSON.stringify(message2);
+		this.send(channel, data[current]);
 
-				connection.write(bare2); // stringify entire message!
-				console.log('<---   Message sent     -', bare2);
+		return current;
+	}
+}
 
-				const baroDataState: DataMessage<BaroDataData, BaroDataClassName> = {
-					className: 'org.telestion.core.database.DbResponse',
-					dataType: 'de.jvpichowski.rocketsound.messages.base.BaroData',
-					result: [
-						{
-							alt: {
-								altitude: 5,
-								className: 'de.jvpichowski.rocketsound.messages.base.Altitude'
-							},
-							press: {
-								pressure: 3,
-								className: 'de.jvpichowski.rocketsound.messages.base.Pressure'
-							},
-							temp: {
-								temperature: 100,
-								className:
-									'de.jvpichowski.rocketsound.messages.base.Temperature'
-							},
-							className: 'de.jvpichowski.rocketsound.messages.base.BaroData'
-						}
-					]
-				};
+const logger = new Logger({
+	loggers: [ChalkLogger(chalk)]
+});
 
-				const message4 = {
-					type: 'rec',
-					address: BaroData,
-					body: baroDataState
-				};
-
-				const bare4 = JSON.stringify(message4);
-
-				connection.write(bare4); // stringify entire message!
-				console.log('<---   Message sent     -', bare4);
-
-				const spectrumMessage: SpectrumMessage = {
-					className: 'org.telestion.core.database.DbResponse',
-					dataType: 'de.jvpichowski.rocketsound.messages.sound.Spectrum',
-					result: [
-						{
-							min: 0.1,
-							max: 1,
-							data: new Array(40).fill(0).map(() => Math.random()),
-							className: 'de.jvpichowski.rocketsound.messages.sound.Spectrum'
-						}
-					]
-				};
-
-				const message3 = {
-					type: 'rec',
-					address: Spectrum,
-					body: spectrumMessage
-				};
-				connection.write(JSON.stringify(message3)); // stringify entire message!
-				console.log('<---   Message sent     -', JSON.stringify(message3));
-			}, 400); // sends message every 0.4 seconds
-
-			connection.on('data', message => {
-				console.log('--->   Message received -', message);
-			});
-
-			connection.on('close', () => {
-				console.log('XXXX   Connection closed');
-				clearInterval(id);
-			});
-
-			console.log('++++   Connection opened');
+export function onReady() {
+	if (
+		process.env.NODE_ENV !== 'production' &&
+		process.env.MOCK_SERVER === 'true'
+	) {
+		const server = new RocketSoundMockServer({
+			logger: logger.getComponentLogger('Mock Server')
 		});
-
-		const server = http.createServer();
-		eventBus.installHandlers(server, { prefix: '/bridge' });
-
-		server.listen(9870, '0.0.0.0');
+		server.listen({ port: 9870, hostname: '0.0.0.0' });
 	}
 }
