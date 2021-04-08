@@ -6,8 +6,8 @@ import {
 	Flex,
 	Text
 } from '@adobe/react-spectrum';
-import { Badge } from './Badge';
-import { State } from './state.model';
+import { Badge } from './badge';
+import { State } from './model';
 
 export interface StateDisplayProps {
 	state: State;

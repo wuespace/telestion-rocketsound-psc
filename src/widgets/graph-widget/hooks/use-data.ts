@@ -35,14 +35,17 @@ export function useData(
 	useEffect(() => {
 		if (eventBus) {
 			// register all callbacks
+			console.log('Register callbacks...');
 			callbacks.forEach(([channel, callback]) =>
-				eventBus.registerHandler(channel, callback)
+				eventBus.register(channel, callback)
 			);
 			// unregister all callbacks
-			return () =>
+			return () => {
+				console.log('Unregister callbacks...');
 				callbacks.forEach(([channel, callback]) =>
-					eventBus.unregisterHandler(channel, callback)
+					eventBus.unregister(channel, callback)
 				);
+			};
 		}
 	}, [callbacks, connections, eventBus]);
 

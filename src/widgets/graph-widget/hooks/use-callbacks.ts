@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useMemo, useState } from 'react';
 import {
 	Callback,
 	ChannelAddress,
-	ReceiveMessage
+	JsonSerializable
 } from '@wuespace/telestion-client-types';
 
 import { ChartConnection, DataSample } from '../model';
@@ -36,11 +36,12 @@ export function useCallbacks(
 	const callbacks = useMemo(
 		() =>
 			connections.map(({ channel, descriptors }) => {
-				const callback = (message: ReceiveMessage | null) => {
+				const callback = (content: JsonSerializable) => {
 					try {
 						// build current time diff from start
 						const time = (new Date().getTime() - initialDate.getTime()) / 1000;
-						const dataSample = buildDataSample(descriptors, message, time);
+						const dataSample = buildDataSample(descriptors, content, time);
+						console.log('Data Sample:', dataSample);
 						setData(prevState => [
 							...prevState.slice(-maxDataSamples),
 							dataSample

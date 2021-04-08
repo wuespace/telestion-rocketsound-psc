@@ -3,8 +3,8 @@ import { LoadingIndicator } from '@wuespace/telestion-client-common';
 
 import { FlightState } from '../../model/channels';
 import { FlightStateMessage } from '../../model/messages';
-import { State } from './state.model';
-import { StateDisplay } from './StateDisplay';
+import { State } from './model';
+import { StateDisplay } from './state-display';
 
 const states: { [key: number]: State } = {
 	0: {
@@ -48,12 +48,15 @@ const states: { [key: number]: State } = {
 const fallbackState: State = states[0];
 
 export function Widget() {
-	const current = useChannelLatest<FlightStateMessage>(FlightState)?.result[0];
+	const current = useChannelLatest<FlightStateMessage>(FlightState);
+
+	if (current) console.log('Flightstate:', current.result[0].state);
 
 	return (
+		// @ts-ignore
 		<LoadingIndicator dependencies={[current]}>
-			{() => (
-				<StateDisplay state={states[current?.state || 0] || fallbackState} />
+			{({ result }) => (
+				<StateDisplay state={states[result[0].state] || fallbackState} />
 			)}
 		</LoadingIndicator>
 	);

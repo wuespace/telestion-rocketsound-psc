@@ -8,7 +8,7 @@ import { GpsData } from '../../model/channels';
 import { DetailsTable } from './details-table';
 
 export function Widget({ title }: BaseRendererProps) {
-	const latestData = useChannelLatest<GpsDataMessage>(GpsData)?.result[0];
+	const latestData = useChannelLatest<GpsDataMessage>(GpsData);
 
 	const isFixEstablished = latestData && latestData.fix;
 
@@ -32,14 +32,11 @@ export function Widget({ title }: BaseRendererProps) {
 						{isFixEstablished ? 'Fix established' : 'Fix pending'}
 					</StatusLight>
 				</Flex>
+				{/*// @ts-ignore*/}
 				<LoadingIndicator dependencies={[latestData]}>
-					{() => (
+					{({ result }) => (
 						<View width="100%" overflow="auto">
-							{/* TODO: Waiting for Loading Indicator improvement:
-					  			https://github.com/TelestionTeam/telestion-client/pull/350
-					  		*/}
-							{/*// @ts-ignore*/}
-							<DetailsTable data={latestData} isQuiet={true} />
+							<DetailsTable data={result[0]} isQuiet={true} />
 						</View>
 					)}
 				</LoadingIndicator>

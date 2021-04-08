@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import { useChannel } from '@wuespace/telestion-client-core';
 import { ChannelAddress } from '@wuespace/telestion-client-types';
 
-import { AmplitudeMessage } from '../../model/messages/amplitude';
+import { AmplitudeMessage } from '../../model/messages';
 
 function buildNextState(
 	prevState: number[],
@@ -23,11 +23,9 @@ export function useAmplitudes(
 ): number[] {
 	const [amplitudes, setAmplitudes] = useState<number[]>([]);
 	const handler = useCallback(
-		(data: AmplitudeMessage | null) => {
-			if (data) {
-				const { amplitude } = data.result[0];
-				setAmplitudes(prevState => buildNextState(prevState, amplitude, width));
-			}
+		(data: AmplitudeMessage) => {
+			const { amplitude } = data.result[0];
+			setAmplitudes(prevState => buildNextState(prevState, amplitude, width));
 		},
 		[width]
 	);
