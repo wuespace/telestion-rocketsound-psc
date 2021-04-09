@@ -32,7 +32,7 @@
 		"@spectrum-icons/workflow": "^3.2.0",
 		"@wuespace/telestion-client-common": "^0.11.2",
 		"@wuespace/telestion-client-core": "^0.11.2",
-		"@wuespace/telestion-client-prop-types": "^0.11.2",
+		"@wuespace/telestion-client-prop-types": "^0.12.1",
 		"@wuespace/vertx-mock-server": "^0.11.0",
 		"electron": "^12.0.2",
 		"leaflet": "^1.7.1",
