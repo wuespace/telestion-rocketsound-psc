@@ -147,11 +147,11 @@ class RocketSoundMockServer extends MockServer implements OnInit, OnClose {
 
 	onInit() {
 		this.intervalId = setInterval(() => {
-			// this.currentAmplitude = this.sendMessage(
-			// 	this.currentAmplitude,
-			// 	Amplitude,
-			// 	this.amplitudeData
-			// );
+			this.currentAmplitude = this.sendMessage(
+				this.currentAmplitude,
+				Amplitude,
+				this.amplitudeData
+			);
 			this.currentFlightState = this.sendMessage(
 				this.currentFlightState,
 				FlightState,
@@ -162,11 +162,11 @@ class RocketSoundMockServer extends MockServer implements OnInit, OnClose {
 				BaroData,
 				this.baroData
 			);
-			// this.currentSpectrum = this.sendMessage(
-			// 	this.currentSpectrum,
-			// 	Spectrum,
-			// 	this.spectrumData
-			// );
+			this.currentSpectrum = this.sendMessage(
+				this.currentSpectrum,
+				Spectrum,
+				this.spectrumData
+			);
 		}, 1000); // send every 1 second new data
 	}
 
