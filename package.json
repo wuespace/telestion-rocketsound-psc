@@ -1,7 +1,7 @@
 {
 	"name": "telestion-rocketsound-psc",
 	"description": "telestion-rocketsound-psc, a Telestion PSC generated using the telestion-client-cli",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"homepage": ".",
 	"scripts": {
 		"prepare": "husky install",

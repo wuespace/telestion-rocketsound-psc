@@ -1,3 +1,13 @@
+## [0.3.1](https://github.com/TelestionTeam/telestion-rocketsound-psc/compare/v0.3.0...v0.3.1) (2021-04-10)
+
+
+### Bug Fixes
+
+* Make project compatible with Telestion-Client v0.12.0 ([2e006e7](https://github.com/TelestionTeam/telestion-rocketsound-psc/commit/2e006e70f42759c866771a3c07f0fa7c87e45c3a))
+* Mock server plugin ([d766f91](https://github.com/TelestionTeam/telestion-rocketsound-psc/commit/d766f91095478ca72019d26032765cab30240734))
+
+
+
 # [0.3.0](https://github.com/TelestionTeam/telestion-rocketsound-psc/compare/v0.2.0...v0.3.0) (2021-03-11)
 
 
