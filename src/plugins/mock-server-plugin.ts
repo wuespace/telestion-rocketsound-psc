@@ -199,7 +199,7 @@ export function onReady() {
 		process.env.MOCK_SERVER === 'true'
 	) {
 		const server = new RocketSoundMockServer({
-			logger: logger.getComponentLogger('Mock Server')
+			// logger: logger.getComponentLogger('Mock Server')
 		});
 		server.listen({ port: 9870, hostname: '0.0.0.0' });
 	}
