@@ -28,7 +28,7 @@
 		]
 	},
 	"dependencies": {
-		"@adobe/react-spectrum": "^3.9.0",
+		"@adobe/react-spectrum": "^3.10.0",
 		"@fliegwerk/logsemts": "^0.4.0",
 		"@react-spectrum/table": "^3.0.0-alpha.10",
 		"@react-spectrum/tabs": "^3.0.0-beta.0",
@@ -48,7 +48,7 @@
 		"react-router-dom": "^5.2.0",
 		"react-virtualized-auto-sizer": "^1.0.5",
 		"recharts": "^2.0.9",
-		"zustand": "^3.4.2"
+		"zustand": "^3.5.0"
 	},
 	"devDependencies": {
 		"@testing-library/jest-dom": "^5.12.0",
