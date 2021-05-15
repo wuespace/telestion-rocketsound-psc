@@ -6,10 +6,8 @@ import { ChartConnection, DataSample } from '../model';
 import { useCallbacks } from './use-callbacks';
 
 // event bus selector
-const selector: StateSelector<
-	EventBusState,
-	EventBusState['eventBus']
-> = state => state.eventBus;
+const selector: StateSelector<EventBusState, EventBusState['eventBus']> =
+	state => state.eventBus;
 
 /**
  * Holds the data samples for the chart component

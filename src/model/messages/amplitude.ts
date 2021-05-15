@@ -1,7 +1,8 @@
 import { JsonSerializable } from '@wuespace/telestion-client-types';
 import { DataMessage } from '../channels';
 
-export type AmplitudeClassName = 'de.jvpichowski.rocketsound.messages.sound.Amplitude';
+export type AmplitudeClassName =
+	'de.jvpichowski.rocketsound.messages.sound.Amplitude';
 
 export interface AmplitudeData extends Record<string, JsonSerializable> {
 	amplitude: number;
