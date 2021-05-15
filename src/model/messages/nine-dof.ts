@@ -1,7 +1,8 @@
 import { JsonSerializable } from '@wuespace/telestion-client-types';
 import { DataMessage } from '../channels';
 
-export type AccelerometerClassName = 'de.jvpichowski.rocketsound.messages.base.Accelerometer';
+export type AccelerometerClassName =
+	'de.jvpichowski.rocketsound.messages.base.Accelerometer';
 
 export interface AccelerometerData extends Record<string, JsonSerializable> {
 	x: number;
@@ -10,7 +11,8 @@ export interface AccelerometerData extends Record<string, JsonSerializable> {
 	classMame: AccelerometerClassName;
 }
 
-export type GyroscopeClassName = 'de.jvpichowski.rocketsound.messages.base.Gyroscope';
+export type GyroscopeClassName =
+	'de.jvpichowski.rocketsound.messages.base.Gyroscope';
 
 export interface GyroscopeData extends Record<string, JsonSerializable> {
 	x: number;
@@ -19,7 +21,8 @@ export interface GyroscopeData extends Record<string, JsonSerializable> {
 	className: GyroscopeClassName;
 }
 
-export type MagnetometerClassName = 'de.jvpichowski.rocketsound.messages.base.Magnetometer';
+export type MagnetometerClassName =
+	'de.jvpichowski.rocketsound.messages.base.Magnetometer';
 
 export interface MagnometerData extends Record<string, JsonSerializable> {
 	x: number;
@@ -28,7 +31,8 @@ export interface MagnometerData extends Record<string, JsonSerializable> {
 	className: MagnetometerClassName;
 }
 
-export type NineDofClassName = 'de.jvpichowski.rocketsound.messages.base.NineDofData';
+export type NineDofClassName =
+	'de.jvpichowski.rocketsound.messages.base.NineDofData';
 
 export interface NineDofData extends Record<string, JsonSerializable> {
 	acc: AccelerometerData;

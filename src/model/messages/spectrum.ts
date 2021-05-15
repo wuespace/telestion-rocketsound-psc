@@ -1,7 +1,8 @@
 import { JsonSerializable } from '@wuespace/telestion-client-types';
 import { DataMessage } from '../channels';
 
-export type SpectrumClassName = 'de.jvpichowski.rocketsound.messages.sound.Spectrum';
+export type SpectrumClassName =
+	'de.jvpichowski.rocketsound.messages.sound.Spectrum';
 
 export interface SpectrumData extends Record<string, JsonSerializable> {
 	min: number;

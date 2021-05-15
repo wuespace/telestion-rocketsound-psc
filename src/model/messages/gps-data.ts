@@ -1,7 +1,8 @@
 import { JsonSerializable } from '@wuespace/telestion-client-types';
 import { DataMessage } from '../channels';
 
-export type GpsDataClassName = 'de.jvpichowski.rocketsound.messages.base.GpsData';
+export type GpsDataClassName =
+	'de.jvpichowski.rocketsound.messages.base.GpsData';
 
 export interface GpsDataData extends Record<string, JsonSerializable> {
 	satCount: number;
