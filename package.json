@@ -31,7 +31,7 @@
 		"@adobe/react-spectrum": "^3.10.0",
 		"@fliegwerk/logsemts": "^0.4.2",
 		"@react-spectrum/table": "^3.0.0-alpha.10",
-		"@react-spectrum/tabs": "^3.0.0-beta.0",
+		"@react-spectrum/tabs": "^3.0.0-rc.0",
 		"@spectrum-icons/illustrations": "^3.2.1",
 		"@spectrum-icons/ui": "^3.2.0",
 		"@spectrum-icons/workflow": "^3.2.0",
@@ -52,7 +52,7 @@
 	},
 	"devDependencies": {
 		"@testing-library/jest-dom": "^5.12.0",
-		"@testing-library/react": "^11.2.5",
+		"@testing-library/react": "^11.2.7",
 		"@testing-library/user-event": "^13.1.8",
 		"@types/jest": "^26.0.23",
 		"@types/leaflet": "^1.7.0",
